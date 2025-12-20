@@ -20,6 +20,18 @@ Unlike `terminal-notifier`, NotifiCLI:
 | `-title` | The bold title of the notification. |
 | `-message` | The body text/subtitle. |
 | `-actions` | (Optional) Comma-separated list of button labels (e.g., "Yes,No"). |
+| `-persistent` | Uses the "Alert" style so the notification stays on screen. |
+
+## Persistent Mode 📌
+To use persistent alerts (notifications that don't disappear), use the `-persistent` flag.
+
+**One-Time Setup Required:**
+1. Run a persistent test once: `notificli -message "Setup" -persistent`
+2. Open **System Settings > Notifications**.
+3. Find **NotifiPersistent** in the list.
+4. Change the alert style from "Banner" to **Alerts**.
+
+Now, valid commands with `-persistent` will stay on screen until clicked.
 
 ## Scripting Example
 
