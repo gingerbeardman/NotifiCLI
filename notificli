@@ -32,6 +32,10 @@ while [[ $# -gt 0 ]]; do
             ARGS+=("$1" "$2")
             shift 2
             ;;
+        -sound)
+            SOUND_ARG="$2"
+            shift 2
+            ;;
         *)
             ARGS+=("$1")
             shift
@@ -106,6 +110,40 @@ elif [ -n "$APP_VARIANT" ]; then
     fi
 else
     TARGET_APP="$BUILD_DIR/NotifiCLI.app/Contents/MacOS/NotifiCLI"
+fi
+
+# Handle Sound Injection
+if [ -n "$SOUND_ARG" ]; then
+    SOUND_PATH=""
+    
+    # Check if it's a file path
+    if [ -f "$SOUND_ARG" ]; then
+        SOUND_PATH="$SOUND_ARG"
+    elif [ -f "/System/Library/Sounds/${SOUND_ARG}.aiff" ]; then
+        SOUND_PATH="/System/Library/Sounds/${SOUND_ARG}.aiff"
+    elif [ -f "/Library/Sounds/${SOUND_ARG}.aiff" ]; then
+        SOUND_PATH="/Library/Sounds/${SOUND_ARG}.aiff"
+    elif [ -f "/System/Library/Sounds/${SOUND_ARG}" ]; then
+        SOUND_PATH="/System/Library/Sounds/${SOUND_ARG}"
+    fi
+
+    if [ -n "$SOUND_PATH" ]; then
+        # Inject the sound file into the app bundle
+        APP_BUNDLE="${TARGET_APP%/Contents/*}"
+        RESOURCES_DIR="$APP_BUNDLE/Contents/Resources"
+        SOUND_FILENAME=$(basename "$SOUND_PATH")
+        
+        # Copy and re-sign
+        cp "$SOUND_PATH" "$RESOURCES_DIR/$SOUND_FILENAME"
+        codesign --force --deep -s - "$APP_BUNDLE" 2>/dev/null
+        
+        FINAL_SOUND_NAME="$SOUND_FILENAME"
+    else
+        # Assume it's a name we couldn't resolve validly, pass as-is
+        FINAL_SOUND_NAME="$SOUND_ARG"
+    fi
+    
+    ARGS+=("-sound" "$FINAL_SOUND_NAME")
 fi
 
 # Run the selected app

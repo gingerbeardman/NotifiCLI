@@ -1,17 +1,23 @@
 import Foundation
 import UserNotifications
+import AppKit
 
 // MARK: - Argument Parsing
 var title: String?
+var subtitle: String?
 var message: String?
 var actions: [String] = []
 var imagePath: String?
+var soundName: String?
+var isSilent = false
 
 var args = CommandLine.arguments.dropFirst()
 while let arg = args.popFirst() {
     switch arg {
     case "-title":
         title = args.popFirst()
+    case "-subtitle":
+        subtitle = args.popFirst()
     case "-message":
         message = args.popFirst()
     case "-actions":
@@ -20,13 +26,17 @@ while let arg = args.popFirst() {
         }
     case "-image":
         imagePath = args.popFirst()
+    case "-sound":
+        soundName = args.popFirst()
+    case "-silent":
+        isSilent = true
     default:
         break
     }
 }
 
 guard let notificationTitle = title, let notificationMessage = message else {
-    print("Usage: NotifiCLI -title \"Title\" -message \"Message\" [-actions \"Yes,No\"] [-image \"/path/to/image.png\"]")
+    print("Usage: NotifiCLI -title \"Title\" -message \"Message\" [-subtitle \"Subtitle\"] [-actions \"Yes,No\"] [-image \"/path/to/image.png\"] [-sound \"Name\"] [-silent]")
     exit(1)
 }
 
@@ -55,7 +65,11 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
+        var options: UNNotificationPresentationOptions = [.banner]
+        if notification.request.content.sound != nil {
+            options.insert(.sound)
+        }
+        completionHandler(options)
     }
 }
 
@@ -84,8 +98,42 @@ if !actions.isEmpty {
 // Create notification content
 let content = UNMutableNotificationContent()
 content.title = notificationTitle
+if let notificationSubtitle = subtitle {
+    content.subtitle = notificationSubtitle
+}
 content.body = notificationMessage
-content.sound = .default
+
+// Sound configuration
+if isSilent {
+    content.sound = nil
+} else {
+    // Default to nil for notification sound to avoid double playing
+    // We will play sound manually using NSSound
+    content.sound = nil
+    
+    // Play sound manually
+    if let soundName = soundName {
+        // Try file in bundle first
+        if let soundPath = Bundle.main.path(forResource: soundName, ofType: nil) {
+            if let sound = NSSound(contentsOfFile: soundPath, byReference: true) {
+                sound.play()
+            }
+        } 
+        // Try system sound by name
+        else if let sound = NSSound(named: NSSound.Name(soundName)) {
+            sound.play()
+        }
+        // Try absolute path (if passed directly)
+         else if FileManager.default.fileExists(atPath: soundName) {
+            if let sound = NSSound(contentsOfFile: soundName, byReference: true) {
+                sound.play()
+            }
+        }
+    } else {
+        // Default sound handling
+        NSSound(named: NSSound.Name("Ping"))?.play()
+    }
+}
 
 if !actions.isEmpty {
     content.categoryIdentifier = "ACTIONS_CATEGORY"

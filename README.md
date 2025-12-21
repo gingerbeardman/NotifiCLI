@@ -18,10 +18,13 @@ Unlike `terminal-notifier`, NotifiCLI:
 | Flag | Description |
 | :--- | :--- |
 | `-title` | The bold title of the notification. |
+| `-subtitle` | (Optional) Secondary text line below the title. |
 | `-message` | The body text/subtitle. |
 | `-actions` | (Optional) Comma-separated list of button labels (e.g., "Yes,No"). |
 | `-image` | (Optional) Path to an image file to show as thumbnail on the right. |
 | `-icon` | (Optional) Path to an `.app` to use its icon for the notification. |
+| `-sound` | (Optional) System sound name (e.g. "Glass") or path to sound file. |
+| `-silent` | (Optional) Delivers notification without any sound. |
 | `-persistent` | Uses the "Alert" style so the notification stays on screen. |
 
 
