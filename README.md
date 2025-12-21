@@ -31,7 +31,7 @@ Unlike `terminal-notifier`, NotifiCLI:
 ### Output Behavior
 When using `-actions`, `-reply`, or `-url`, the command waits for user interaction and prints the result:
 - **Action buttons**: Prints the clicked button label (e.g., `Yes`)
-- **Reply**: Prints `User typed: <message>`
+- **Reply**: Prints the user's typed text directly
 - **Dismiss**: Prints `dismissed`
 - **Click notification**: Prints `default` (and opens URL if specified)
 

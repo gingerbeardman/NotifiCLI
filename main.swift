@@ -58,7 +58,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         
         // Handle Text Input
         if let textResponse = response as? UNTextInputNotificationResponse {
-            selectedAction = "User typed: \(textResponse.userText)"
+            selectedAction = textResponse.userText
         } 
         // Handle Default Click (Open URL)
         else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
