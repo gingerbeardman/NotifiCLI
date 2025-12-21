@@ -165,3 +165,13 @@ open build/NotifiCLI.app
 open build/NotifiPersistent.app
 ```
 Then try the command again.
+
+---
+
+## Issues & Feedback
+
+Found a bug or have a feature request? [Open an issue](https://github.com/DiggingForDinos/NotifiCLI/issues)
+
+---
+
+If you like this project, please consider giving the repo a ⭐ star!
