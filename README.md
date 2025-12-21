@@ -52,7 +52,7 @@ Now, valid commands with `-persistent` will stay on screen until clicked.
 NotifiCLI pauses execution until the user clicks a button. Capture the output to drive your logic:
 
 ```bash
-RESPONSE=$(./build/NotifiCLI.app/Contents/MacOS/NotifiCLI \
+RESPONSE=$(notificli -persistent \
   -title "Deploy?" \
   -message "Verify production deploy?" \
   -actions "Yes,No")
@@ -62,8 +62,37 @@ if [ "$RESPONSE" == "Yes" ]; then
 elif [ "$RESPONSE" == "No" ]; then
   echo "🛑 Aborted."
 else
-  echo "⚠️ Timed out or dismissed."
+  echo "⚠️ Dismissed."
 fi
+```
+
+### Advanced: Multi-Step Workflow
+
+Chain notifications for complex interactive scripts:
+
+```bash
+#!/bin/bash
+RESPONSE=$(notificli -persistent \
+  -title "Deploy to Production?" \
+  -message "Version 2.1.0 is ready." \
+  -actions "Deploy Now,Schedule Later,Cancel" \
+  -icon "Terminal" -sound "Glass")
+
+case "$RESPONSE" in
+  "Deploy Now")
+    notificli -title "🚀 Deploying!" -message "Pushing to production..."
+    # ... run deploy script ...
+    notificli -title "✅ Success!" -message "v2.1.0 is now live!" -sound "Glass"
+    ;;
+  "Schedule Later")
+    WHEN=$(notificli -persistent -title "Schedule Deploy" \
+      -message "When should we deploy?" -reply "e.g., tomorrow 3am")
+    notificli -title "📅 Scheduled" -message "Deploy set for: ${WHEN#User typed: }"
+    ;;
+  "Cancel"|"dismissed")
+    notificli -title "❌ Cancelled" -message "Deployment aborted"
+    ;;
+esac
 ```
 
 ## User Interaction 💬

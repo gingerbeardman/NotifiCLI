@@ -8,6 +8,10 @@
 		<data>
 		mxb1RXPwgCPw8df2ju/BCd4LJL4=
 		</data>
+		<key>Resources/Glass.aiff</key>
+		<data>
+		iyPAkxQTNxee3aHBGSjqm2j8sgo=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -16,6 +20,13 @@
 			<key>hash2</key>
 			<data>
 			sRl4ZUMzsW2epetRnRaNaPDRcUtRQPPirZGAYEKoyp8=
+			</data>
+		</dict>
+		<key>Resources/Glass.aiff</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			szfY4BBmww3i8pZ2Ngm35Ii7PG6oF6qHXumZ1whDPPk=
 			</data>
 		</dict>
 	</dict>
