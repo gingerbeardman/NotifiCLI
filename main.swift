@@ -11,7 +11,7 @@ var imagePath: String?
 var soundName: String?
 var replyPlaceholder: String?
 var openUrl: String?
-var isSilent = false
+
 
 var args = CommandLine.arguments.dropFirst()
 while let arg = args.popFirst() {
@@ -34,8 +34,7 @@ while let arg = args.popFirst() {
         replyPlaceholder = args.popFirst()
     case "-url":
         openUrl = args.popFirst()
-    case "-silent":
-        isSilent = true
+
     default:
         break
     }
@@ -135,35 +134,25 @@ if let notificationSubtitle = subtitle {
 }
 content.body = notificationMessage
 
-// Sound configuration
-if isSilent {
-    content.sound = nil
-} else {
-    // Default to nil for notification sound to avoid double playing
-    // We will play sound manually using NSSound
-    content.sound = nil
-    
-    // Play sound manually
-    if let soundName = soundName {
-        // Try file in bundle first
-        if let soundPath = Bundle.main.path(forResource: soundName, ofType: nil) {
-            if let sound = NSSound(contentsOfFile: soundPath, byReference: true) {
-                sound.play()
-            }
-        } 
-        // Try system sound by name
-        else if let sound = NSSound(named: NSSound.Name(soundName)) {
+// Sound configuration - silent by default, only play if -sound is specified
+content.sound = nil
+
+if let soundName = soundName {
+    // Try file in bundle first
+    if let soundPath = Bundle.main.path(forResource: soundName, ofType: nil) {
+        if let sound = NSSound(contentsOfFile: soundPath, byReference: true) {
             sound.play()
         }
-        // Try absolute path (if passed directly)
-         else if FileManager.default.fileExists(atPath: soundName) {
-            if let sound = NSSound(contentsOfFile: soundName, byReference: true) {
-                sound.play()
-            }
+    } 
+    // Try system sound by name
+    else if let sound = NSSound(named: NSSound.Name(soundName)) {
+        sound.play()
+    }
+    // Try absolute path (if passed directly)
+    else if FileManager.default.fileExists(atPath: soundName) {
+        if let sound = NSSound(contentsOfFile: soundName, byReference: true) {
+            sound.play()
         }
-    } else {
-        // Default sound handling
-        NSSound(named: NSSound.Name("Ping"))?.play()
     }
 }
 
