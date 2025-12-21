@@ -50,11 +50,18 @@ done
 
 # If -icon is specified, auto-create variant if needed
 if [ -n "$ICON_APP" ]; then
-    # Generate variant name from app name (e.g., "Keyboard Maestro.app" -> "KeyboardMaestro")
-    APP_BASENAME=$(basename "$ICON_APP" .app)
-    APP_VARIANT=$(echo "$APP_BASENAME" | tr -d ' ')
-    
-    VARIANT_APP="$BUILD_DIR/NotifiCLI-${APP_VARIANT}.app"
+    # Check if it's a shorthand name for an existing variant (e.g., "Terminal" instead of full path)
+    SHORTHAND_VARIANT="$BUILD_DIR/NotifiCLI-${ICON_APP}.app"
+    if [ -d "$SHORTHAND_VARIANT" ]; then
+        # Use existing variant directly
+        APP_VARIANT="$ICON_APP"
+        VARIANT_APP="$SHORTHAND_VARIANT"
+    else
+        # Generate variant name from app path (e.g., "/Applications/Slack.app" -> "Slack")
+        APP_BASENAME=$(basename "$ICON_APP" .app)
+        APP_VARIANT=$(echo "$APP_BASENAME" | tr -d ' ')
+        VARIANT_APP="$BUILD_DIR/NotifiCLI-${APP_VARIANT}.app"
+    fi
     
     # Auto-create if doesn't exist
     if [ ! -d "$VARIANT_APP" ]; then
