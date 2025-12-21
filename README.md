@@ -11,7 +11,7 @@ Unlike `terminal-notifier`, NotifiCLI:
 ## Usage
 
 ```bash
-/path/to/NotifiCLI -title "Job Complete" -message "The render finished successfully." -actions "Show,Dismiss"
+/path/to/NotifiCLI -title 'Job Complete' -message 'The render finished successfully.' -actions 'Show,Dismiss'
 ```
 
 ### Arguments
@@ -40,7 +40,7 @@ When using `-actions`, `-reply`, or `-url`, the command waits for user interacti
 To use persistent alerts (notifications that don't disappear), use the `-persistent` flag.
 
 **One-Time Setup Required:**
-1. Run a persistent test once: `notificli -message "Setup" -persistent`
+1. Run a persistent test once: `notificli -message 'Setup' -persistent`
 2. Open **System Settings > Notifications**.
 3. Find **NotifiPersistent** in the list.
 4. Change the **Alert Style** to **Persistent**.
@@ -53,9 +53,9 @@ NotifiCLI pauses execution until the user clicks a button. Capture the output to
 
 ```bash
 RESPONSE=$(notificli -persistent \
-  -title "Deploy?" \
-  -message "Verify production deploy?" \
-  -actions "Yes,No")
+  -title 'Deploy?' \
+  -message 'Verify production deploy?' \
+  -actions 'Yes,No')
 
 if [ "$RESPONSE" == "Yes" ]; then
   echo "🚀 Deploying..."
@@ -73,24 +73,24 @@ Chain notifications for complex interactive scripts:
 ```bash
 #!/bin/bash
 RESPONSE=$(notificli -persistent \
-  -title "Deploy to Production?" \
-  -message "Version 2.1.0 is ready." \
-  -actions "Deploy Now,Schedule Later,Cancel" \
-  -icon "Terminal" -sound "Glass")
+  -title 'Deploy to Production?' \
+  -message 'Version 2.1.0 is ready.' \
+  -actions 'Deploy Now,Schedule Later,Cancel' \
+  -icon 'Terminal' -sound 'Glass')
 
 case "$RESPONSE" in
-  "Deploy Now")
-    notificli -title "🚀 Deploying!" -message "Pushing to production..."
+  'Deploy Now')
+    notificli -title 'Deploying!' -message 'Pushing to production...'
     # ... run deploy script ...
-    notificli -title "✅ Success!" -message "v2.1.0 is now live!" -sound "Glass"
+    notificli -title 'Success!' -message 'v2.1.0 is now live!' -sound 'Glass'
     ;;
-  "Schedule Later")
-    WHEN=$(notificli -persistent -title "Schedule Deploy" \
-      -message "When should we deploy?" -reply "e.g., tomorrow 3am")
-    notificli -title "📅 Scheduled" -message "Deploy set for: ${WHEN#User typed: }"
+  'Schedule Later')
+    WHEN=$(notificli -persistent -title 'Schedule Deploy' \
+      -message 'When should we deploy?' -reply 'e.g., tomorrow 3am')
+    notificli -title 'Scheduled' -message "Deploy set for: $WHEN"
     ;;
-  "Cancel"|"dismissed")
-    notificli -title "❌ Cancelled" -message "Deployment aborted"
+  'Cancel'|'dismissed')
+    notificli -title 'Cancelled' -message 'Deployment aborted'
     ;;
 esac
 ```
