@@ -74,23 +74,26 @@ fi
 
 You can create app variants with custom notification icons:
 
-1. **Add icons**: Place `.icns` files in the `icons/` folder:
-   ```
-   icons/
-   ├── HomeAssistant.icns
-   └── Plex.icns
+1. **Copy an icon** from any app:
+   - Right-click any `.app` → **Get Info** (or ⌘I)
+   - Click the icon in the top-left → **⌘C** to copy
+
+2. **Save as PNG**:
+   - Open **Preview** → File → **New from Clipboard**
+   - File → **Export** → Format: **PNG**
+   - Save to: `icons/HomeAssistant.png` (or any name)
+
+3. **Rebuild**:
+   ```bash
+   ./build.sh
    ```
 
-2. **Rebuild**: Run `./build.sh` to generate variant apps.
-
-3. **Use**: 
+4. **Use**:
    ```bash
    notificli -app HomeAssistant -title "Motion" -message "Front door"
    ```
 
-**Getting .icns files**: Right-click any app → Get Info → Click the icon → ⌘C to copy, then paste into Preview and save as .icns. Or use Finder's Info panel to paste directly into your variant app after building.
-
-> **Note**: macOS caches app icons aggressively. After adding new icon variants, a reboot may be required for the icons to appear correctly in notifications.
+> **Note**: macOS caches app icons aggressively. After adding new icon variants, a **reboot is required** for the icons to appear correctly in Notification Center.
 
 ## Troubleshooting
 **"Error requesting auth: Notifications are not allowed"**
