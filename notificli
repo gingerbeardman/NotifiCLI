@@ -107,7 +107,8 @@ fi
 
 # Determine which app to use
 if [ "$PERSISTENT" = true ]; then
-    TARGET_APP="$BUILD_DIR/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
+    # Use embedded NotifiPersistent inside NotifiCLI.app/Contents/Apps/
+    TARGET_APP="$BUILD_DIR/NotifiCLI.app/Contents/Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
 elif [ -n "$APP_VARIANT" ]; then
     VARIANT_APP="$BUILD_DIR/NotifiCLI-${APP_VARIANT}.app/Contents/MacOS/NotifiCLI-${APP_VARIANT}"
     if [ -x "$VARIANT_APP" ]; then

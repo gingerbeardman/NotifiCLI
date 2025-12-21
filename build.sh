@@ -59,6 +59,14 @@ for APP_NAME in "${BASE_APPS[@]}"; do
     echo "✅ Built ${APP_BUNDLE}"
 done
 
+# Embed NotifiPersistent inside NotifiCLI.app/Contents/Apps/
+echo "📦 Embedding NotifiPersistent inside NotifiCLI..."
+APPS_DIR="${BUILD_DIR}/NotifiCLI.app/Contents/Apps"
+mkdir -p "$APPS_DIR"
+cp -R "${BUILD_DIR}/NotifiPersistent.app" "$APPS_DIR/"
+codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
+echo "✅ NotifiPersistent embedded in NotifiCLI.app/Contents/Apps/"
+
 # Cleanup backup
 rm -rf "$BACKUP_DIR"
 

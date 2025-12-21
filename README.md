@@ -113,22 +113,26 @@ Open a link when the user clicks the notification body:
 notificli -title "Build Failed" -message "Click to view logs" -url "https://github.com/my/repo/actions"
 ```
 
-## Installation & Build
+## Installation
 
-1.  **Build**
-    ```bash
-    ./build.sh
-    ```
-    This compiles the app into `build/NotifiCLI.app`.
+### Quick Start (Recommended)
 
-2.  **Permissions**
-    On the first run, you must allow notifications. If running from a script/terminal, macOS may prompt you to allow "NotifiCLI" to send notifications.
+1. **Download** the latest release from [Releases](https://github.com/DiggingForDinos/NotifiCLI/releases)
+2. **Unzip** and move `NotifiCLI.app` to `~/Applications/` (NotifiPersistent is embedded inside)
+3. **Grant permissions**:
+   - Double-click `NotifiCLI.app` to allow notifications
+   - For persistent alerts, also open `NotifiCLI.app/Contents/Apps/NotifiPersistent.app`
+4. **Add to PATH** (optional):
+   ```bash
+   ln -s ~/Applications/NotifiCLI.app/Contents/MacOS/NotifiCLI /usr/local/bin/notificli
+   ```
 
-3.  **Global Install (Optional)**
-    You can alias it or link the binary to your path:
-    ```bash
-    ln -s $(pwd)/build/NotifiCLI.app/Contents/MacOS/NotifiCLI /usr/local/bin/notificli
-    ```
+### Build from Source
+
+```bash
+./build.sh
+```
+This compiles apps into the `build/` directory.
 
 ## Custom Icons 🎨
 

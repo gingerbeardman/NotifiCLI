@@ -11,34 +11,6 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Apps/NotifiPersistent.app/Contents/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			KtSnzi2Xp4hwzvDHDPeLAHXamYdg3l79HC7XwUEnPtQ=
-			</data>
-		</dict>
-		<key>Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			stOfwSpoIVi1WZJ0U7vU0kcmRS/mhI3KGff5GobpfOo=
-			</data>
-		</dict>
-		<key>Apps/NotifiPersistent.app/Contents/Resources/AppIcon.icns</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			J9lgdEUwAyxkb8gQj640f5nlmXXj/Ij438X39nOA45Y=
-			</data>
-		</dict>
-		<key>Apps/NotifiPersistent.app/Contents/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			xqgLwHIAKU3mnuwmPqm6nBtvbNGCY43Qaaq9M7LXnVk=
-			</data>
-		</dict>
 		<key>Resources/AppIcon.icns</key>
 		<dict>
 			<key>hash2</key>
