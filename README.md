@@ -60,6 +60,24 @@ else
 fi
 ```
 
+## User Interaction 💬
+
+### Reply Input
+Capture user input directly from the notification:
+
+```bash
+OUTPUT=$(notificli -title "Status" -message "Update status?" -reply "Type 'Done' or 'Working'")
+echo "You typed: $OUTPUT"
+# Output: "You typed: User typed: Done"
+```
+
+### Open URL
+Open a link when the user clicks the notification body:
+
+```bash
+notificli -title "Build Failed" -message "Click to view logs" -url "https://github.com/my/repo/actions"
+```
+
 ## Installation & Build
 
 1.  **Build**
