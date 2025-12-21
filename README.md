@@ -111,13 +111,19 @@ notificli -icon "/Applications/Slack.app" -title "Message" -message "New DM rece
 
 The first time you use a new icon, it auto-creates a variant (takes ~1 second). Subsequent uses are instant.
 
-**Examples:**
+**Shorthand:** Once a variant is created, you can use just the name:
 ```bash
-# Use Terminal's icon
+# First time - uses full path
 notificli -icon "/System/Applications/Utilities/Terminal.app" -title "Build" -message "Complete"
 
-# Use any installed app
+# After that - shorthand works
+notificli -icon "Terminal" -title "Build" -message "Complete"
+```
+
+**More examples:**
+```bash
 notificli -icon "/Applications/Keyboard Maestro.app" -title "Macro" -message "Finished"
+notificli -icon "KeyboardMaestro" -title "Macro" -message "Finished"  # shorthand
 ```
 
 > **Note**: macOS caches app icons. After using a new icon for the first time, a **reboot is required** for the icon to appear correctly in Notification Center.
