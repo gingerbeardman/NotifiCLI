@@ -25,7 +25,7 @@ Unlike `terminal-notifier`, NotifiCLI offers:
 | `-icon` | (Optional) Path to an `.app` to use its icon for the notification. |
 | `-reply` | (Optional) Adds a "Reply" button with a placeholder text input. |
 | `-url` | (Optional) Opens the specified URL when notification is clicked. |
-| `-sound` | (Optional) Play a sound. System sound name (e.g. "Glass") or path to sound file. Silent by default. |
+| `-sound` | (Optional) System sound or file path. Sounds: Basso, Blow, Bottle, Frog, Funk, Glass, Hero, Morse, Ping, Pop, Purr, Sosumi, Submarine, Tink |
 | `-persistent` | Notification stays on screen until dismissed. |
 
 ### Output Behavior
