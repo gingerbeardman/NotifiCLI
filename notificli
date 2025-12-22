@@ -40,23 +40,41 @@ done
 if [ "$IS_PERSISTENT" -eq 1 ]; then
     # NotifiPersistent is embedded inside NotifiCLI.app by build.sh
     APP_PATH="${BUILD_DIR}/NotifiCLI.app/Contents/Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
-    COMMAND="$APP_PATH"
 else
     if [ -n "$ICON_NAME" ]; then
-        # Check if specific variant exists
-        VARIANT_PATH="${BUILD_DIR}/NotifiCLI-${ICON_NAME}.app/Contents/MacOS/NotifiCLI-${ICON_NAME}"
+        # Check if user provided a full path to an app (e.g. /Applications/Foo.app)
+        if [[ "$ICON_NAME" == *.app* ]]; then
+             APP_PATH_ARG="$ICON_NAME"
+             # Extract basename without extension (e.g. "Foo")
+             BASE_NAME=$(basename "$APP_PATH_ARG" .app)
+             # Sanitize name (remove spaces/special chars if needed, but simple whitespace removal is safer for filenames)
+             VARIANT_NAME="${BASE_NAME// /}"
+        else
+             VARIANT_NAME="$ICON_NAME"
+             APP_PATH_ARG="" 
+        fi
+
+        # Check if specific variant exists inside the main app bundle
+        VARIANT_PATH="${BUILD_DIR}/NotifiCLI.app/Contents/Apps/NotifiCLI-${VARIANT_NAME}.app/Contents/MacOS/NotifiCLI-${VARIANT_NAME}"
+        
+        if [ ! -f "$VARIANT_PATH" ] && [ -n "$APP_PATH_ARG" ]; then
+             echo "⚙️  Generating new icon variant for '$VARIANT_NAME'..."
+             # Call add-icon.sh to generate it (suppress output to keep it clean?)
+             "${PROJECT_DIR}/add-icon.sh" "$APP_PATH_ARG" "$VARIANT_NAME" >/dev/null
+        fi
+
         if [ -f "$VARIANT_PATH" ]; then
             APP_PATH="$VARIANT_PATH"
         else
             # Fallback to default if variant not found
-            # echo "Warning: Icon variant '${ICON_NAME}' not found. Using default icon." >&2
+            # echo "Warning: Icon variant '${VARIANT_NAME}' not found. Using default icon." >&2
             APP_PATH="${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/NotifiCLI"
         fi
     else
         APP_PATH="${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/NotifiCLI"
     fi
-    COMMAND="$APP_PATH"
 fi
+COMMAND="$APP_PATH"
 
 # Check if app exists
 if [ ! -f "$APP_PATH" ]; then

@@ -6,7 +6,10 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # Helper to find app in standard locations
 find_app() {
     local app_name="$1"
-    if [ -d "/Applications/${app_name}" ]; then
+    # Dev/Debug path
+    if [ -d "/Users/chrislapointe/Scripts/Antigravity/NotifiCLI/build/${app_name}" ]; then
+        echo "/Users/chrislapointe/Scripts/Antigravity/NotifiCLI/build/${app_name}"
+    elif [ -d "/Applications/${app_name}" ]; then
         echo "/Applications/${app_name}"
     elif [ -d "${HOME}/Applications/${app_name}" ]; then
         echo "${HOME}/Applications/${app_name}"

@@ -125,7 +125,10 @@ if [ -d "$ICONS_DIR" ]; then
 
         # Ad-hoc sign
         codesign --force --deep -s - "$APP_BUNDLE"
-        echo "✅ Built ${APP_BUNDLE}"
+        
+        # Move into NotifiCLI.app/Contents/Apps/
+        mv "$APP_BUNDLE" "${BUILD_DIR}/NotifiCLI.app/Contents/Apps/"
+        echo "✅ Built and embedded ${APP_NAME} into NotifiCLI"
     done
 fi
 

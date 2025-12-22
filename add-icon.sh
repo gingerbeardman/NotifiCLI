@@ -4,6 +4,10 @@
 
 set -e
 
+# Resolve script directory to allow running from anywhere
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$DIR"
+
 APP_PATH="$1"
 VARIANT_NAME="$2"
 ICONS_DIR="icons"

@@ -21,7 +21,7 @@ xcuserdata/
 # Keyboard Maestro Action (if you want to exclude the working dir, but keeping it is fine too)
 # Keyboard-Maestro-Action/
 
-# Misc
 *.swp
 *~
 .vscode/
+deploy.sh
