@@ -15,7 +15,7 @@ Unlike `terminal-notifier`, NotifiCLI offers:
     <td align="center" width="50%">
       <b>Action Buttons</b><br>
       <img src="images/actions.png?raw=true" width="100%"><br>
-      <code>notificli -title "Dinner Decision" -message "What are we ordering tonight?" -actions "Pizza,Sushi,Tacos,Burgers" -sound "Pop"</code>
+      <code>notificli -title "Deploy to Production?" -message "Version 2.1.0 is ready." -actions "Deploy Now,Schedule Later,Cancel"</code>
     </td>
     <td align="center" width="50%">
       <b>Reply Input</b><br>
@@ -27,16 +27,15 @@ Unlike `terminal-notifier`, NotifiCLI offers:
     <td align="center" width="50%">
       <b>Remote Image</b><br>
       <img src="images/image.png?raw=true" width="100%"><br>
-      <code>notificli -title "pug" -message "Dark Mode has arrived!" -image "https://images.unsplash.com/photo..."</code>
+      <code>notificli -title "pug" -message "hello" -image "https://images.unsplash.com/photo..."</code>
     </td>
     <td align="center" width="50%">
       <b>Open URL</b><br>
       <img src="images/url.png?raw=true" width="100%"><br>
-      <code>notificli -title "Build Failed" -message "Click to view logs" -url "https://github.com/my/repo/actions"</code>
+      <code>notificli -title "Package Delivered" -message "Your order has arrived at the front door." -url "https://github.com/my/repo/actions"</code>
     </td>
   </tr>
 </table>
-
 
 
 ### Arguments
