@@ -142,12 +142,12 @@ notificli -title 'Build Failed' -message 'Click to view logs' -url 'https://gith
 NotifiCLI includes a native **Keyboard Maestro Action** for easy integration into your macros.
 
 ### Installation
-1. Download `Keyboard-Maestro-Action.zip` from the [latest release](https://github.com/DiggingForDinos/NotifiCLI/releases).
-2. Unzip the file. You should see a folder named `NotifiCLI`.
-3. Move the `NotifiCLI` folder to:
+1. **Install the main app first**: Download `NotifiCLI.zip`, unzip it, and move `NotifiCLI.app` to your `/Applications` or `~/Applications` folder.
+2. Download `Keyboard-Maestro-Action.zip` from the [releases page](https://github.com/DiggingForDinos/NotifiCLI/releases).
+3. Unzip it and move the resulting `NotifiCLI` folder to:
    `~/Library/Application Support/Keyboard Maestro/Keyboard Maestro Actions/`
-   *(Tip: You can press Command+Shift+G in Finder and paste that path)*
-4. Restart the Keyboard Maestro Engine (File -> Quit Engine, then File -> Launch Engine).
+   *(Tip: Press Command+Shift+G in Finder and paste that path)*
+4. Restart the Keyboard Maestro Engine.
 
 > [!IMPORTANT]
 > **Security Warning (Gatekeeper)**

@@ -3,11 +3,35 @@
 # Directory where this script is located
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+# Helper to find app in standard locations
+find_app() {
+    local app_name="$1"
+    if [ -d "/Applications/${app_name}" ]; then
+        echo "/Applications/${app_name}"
+    elif [ -d "${HOME}/Applications/${app_name}" ]; then
+        echo "${HOME}/Applications/${app_name}"
+    elif [ -d "${DIR}/${app_name}" ]; then
+        echo "${DIR}/${app_name}"
+    fi
+}
+
 # Determine which app to use
 if [ "$KMPARAM_Persistant" != "0" ]; then
-    App="${DIR}/NotifiCLI.app/Contents/Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
+    NotifiPath=$(find_app "NotifiCLI.app")
+    if [ -n "$NotifiPath" ]; then
+        App="${NotifiPath}/Contents/Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
+    else
+        echo "Error: NotifiCLI.app not found in Applications or Action folder." >&2
+        exit 1
+    fi
 else
-    App="${DIR}/NotifiCLI.app/Contents/MacOS/NotifiCLI"
+    NotifiPath=$(find_app "NotifiCLI.app")
+    if [ -n "$NotifiPath" ]; then
+        App="${NotifiPath}/Contents/MacOS/NotifiCLI"
+    else
+        echo "Error: NotifiCLI.app not found in Applications or Action folder." >&2
+        exit 1
+    fi
 fi
 
 # Check for other parameters and construct flags
