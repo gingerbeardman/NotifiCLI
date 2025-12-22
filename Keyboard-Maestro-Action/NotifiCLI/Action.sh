@@ -6,10 +6,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # Helper to find app in standard locations
 find_app() {
     local app_name="$1"
-    # Dev/Debug path
-    if [ -d "/Users/chrislapointe/Scripts/Antigravity/NotifiCLI/build/${app_name}" ]; then
-        echo "/Users/chrislapointe/Scripts/Antigravity/NotifiCLI/build/${app_name}"
-    elif [ -d "/Applications/${app_name}" ]; then
+    if [ -d "/Applications/${app_name}" ]; then
         echo "/Applications/${app_name}"
     elif [ -d "${HOME}/Applications/${app_name}" ]; then
         echo "${HOME}/Applications/${app_name}"
@@ -18,22 +15,27 @@ find_app() {
     fi
 }
 
+# Resolve variant name if icon is provided
+VARIANT_NAME="${KMPARAM_Icon_Path// /}"
+
 # Determine which app to use
+NotifiPath=$(find_app "NotifiCLI.app")
+if [ -z "$NotifiPath" ]; then
+    echo "Error: NotifiCLI.app not found in Applications or Action folder." >&2
+    exit 1
+fi
+
 if [ "$KMPARAM_Persistant" != "0" ]; then
-    NotifiPath=$(find_app "NotifiCLI.app")
-    if [ -n "$NotifiPath" ]; then
-        App="${NotifiPath}/Contents/Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
+    if [ -n "$VARIANT_NAME" ] && [ -d "${NotifiPath}/Contents/Apps/NotifiPersistent-${VARIANT_NAME}.app" ]; then
+        App="${NotifiPath}/Contents/Apps/NotifiPersistent-${VARIANT_NAME}.app/Contents/MacOS/NotifiPersistent-${VARIANT_NAME}"
     else
-        echo "Error: NotifiCLI.app not found in Applications or Action folder." >&2
-        exit 1
+        App="${NotifiPath}/Contents/Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
     fi
 else
-    NotifiPath=$(find_app "NotifiCLI.app")
-    if [ -n "$NotifiPath" ]; then
-        App="${NotifiPath}/Contents/MacOS/NotifiCLI"
+    if [ -n "$VARIANT_NAME" ] && [ -d "${NotifiPath}/Contents/Apps/NotifiCLI-${VARIANT_NAME}.app" ]; then
+        App="${NotifiPath}/Contents/Apps/NotifiCLI-${VARIANT_NAME}.app/Contents/MacOS/NotifiCLI-${VARIANT_NAME}"
     else
-        echo "Error: NotifiCLI.app not found in Applications or Action folder." >&2
-        exit 1
+        App="${NotifiPath}/Contents/MacOS/NotifiCLI"
     fi
 fi
 
