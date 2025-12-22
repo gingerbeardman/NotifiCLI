@@ -169,7 +169,7 @@ NotifiCLI includes a native **Keyboard Maestro Action** for easy integration int
 
 ### Quick Start (Recommended)
 
-1. **Download** the latest release from [Releases](https://github.com/DiggingForDinos/NotifiCLI/releases)
+1. **Download** the latest release from [Releases](https://github.com/DiggingForDinos/NotifiCLI/releases/tag/Keyboard-Maestro-Action)
 2. **Unzip** and move `NotifiCLI.app` to `~/Applications/` (NotifiPersistent is embedded inside)
 3. **Grant permissions**:
    - Double-click `NotifiCLI.app` to allow notifications
