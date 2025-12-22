@@ -139,6 +139,8 @@ notificli -title 'Build Failed' -message 'Click to view logs' -url 'https://gith
 
 ## Keyboard Maestro Plug-in 🎹
 
+<img src="images/km.png?raw=true" width="600">
+
 NotifiCLI includes a native **Keyboard Maestro Action** for easy integration into your macros.
 
 ### Installation
