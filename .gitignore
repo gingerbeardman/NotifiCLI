@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Build Artifacts
+build/
+.build/
+*.app
+*.dSYM
+
+# Temporary files
+.build_backup/
+tmp/
+
+# Xcode / Swift
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+
+# Keyboard Maestro Action (if you want to exclude the working dir, but keeping it is fine too)
+# Keyboard-Maestro-Action/
+
+# Misc
+*.swp
+*~
+.vscode/
