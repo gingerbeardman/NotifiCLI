@@ -10,20 +10,38 @@ Unlike `terminal-notifier`, NotifiCLI offers:
 
 ## Usage
 
+<table>
+  <tr>
+    <td align="center">
+      <b>Action Buttons</b><br>
+      <img src="images/actions.png?raw=true" width="400">
+    </td>
+    <td align="center">
+      <b>Reply Input</b><br>
+      <img src="images/reply.png?raw=true" width="400">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Remote Image</b><br>
+      <img src="images/image.png?raw=true" width="400">
+    </td>
+    <td align="center">
+      <b>Open URL</b><br>
+      <img src="images/url.png?raw=true" width="400">
+    </td>
+  </tr>
+</table>
+
 ### 1. Action Buttons
 `notificli -title "Dinner Decision" -message "What are we ordering tonight?" -actions "Pizza,Sushi,Tacos,Burgers" -sound "Pop"`
-
-![Action Buttons](images/actions.png)
 
 ### 2. Reply Input
 `notificli -title "Weekend Trip" -message "What time do you want to leave on Friday?" -reply "Around 5pm"`
 
-![Reply Input](images/reply.png)
-
 ### 3. Remote Image
 `notificli -title "New Feature Available" -message "Dark Mode has arrived! Click to read the changelog." -image "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop" -url "https://github.com/DiggingForDinos/NotifiCLI/releases"`
 
-![Remote Image](images/image.png)
 
 ### Arguments
 | Flag | Description |
@@ -123,7 +141,6 @@ Open a link when the user clicks the notification body:
 notificli -title 'Build Failed' -message 'Click to view logs' -url 'https://github.com/my/repo/actions'
 ```
 
-![Open URL](images/url.png)
 
 ## Installation
 
