@@ -81,54 +81,72 @@ if [ -d "$ICONS_DIR" ]; then
         FILENAME=$(basename "$ICON_FILE")
         EXTENSION="${FILENAME##*.}"
         VARIANT_NAME="${FILENAME%.*}"
-        APP_NAME="NotifiCLI-${VARIANT_NAME}"
+        # Process both variants: Standard and Persistent
+        VARIANTS=("NotifiCLI" "NotifiPersistent")
         
-        echo "🎨 Building icon variant: $APP_NAME..."
-        APP_BUNDLE="${BUILD_DIR}/${APP_NAME}.app"
-        CONTENTS_DIR="${APP_BUNDLE}/Contents"
-        MACOS_DIR="${CONTENTS_DIR}/MacOS"
-        RESOURCES_DIR="${CONTENTS_DIR}/Resources"
-        
-        mkdir -p "$MACOS_DIR" "$RESOURCES_DIR"
-
-        # Use NotifiCLI's Info.plist but modify bundle ID for unique notifications
-        sed "s/com.DiggingForDinos.NotifiCLI.v2/com.DiggingForDinos.NotifiCLI.${VARIANT_NAME}/" Info.plist > "${CONTENTS_DIR}/Info.plist"
-
-        # Handle icon conversion if PNG
-        if [ "$EXTENSION" == "png" ]; then
-            echo "   Converting PNG to iconset..."
-            ICONSET_DIR="${BUILD_DIR}/${VARIANT_NAME}.iconset"
-            mkdir -p "$ICONSET_DIR"
+        for BASE_TYPE in "${VARIANTS[@]}"; do
+            APP_NAME="${BASE_TYPE}-${VARIANT_NAME}"
+            echo "🎨 Building icon variant: $APP_NAME..."
             
-            # Generate all required sizes using sips
-            sips -z 16 16     "$ICON_FILE" --out "${ICONSET_DIR}/icon_16x16.png" 2>/dev/null
-            sips -z 32 32     "$ICON_FILE" --out "${ICONSET_DIR}/icon_16x16@2x.png" 2>/dev/null
-            sips -z 32 32     "$ICON_FILE" --out "${ICONSET_DIR}/icon_32x32.png" 2>/dev/null
-            sips -z 64 64     "$ICON_FILE" --out "${ICONSET_DIR}/icon_32x32@2x.png" 2>/dev/null
-            sips -z 128 128   "$ICON_FILE" --out "${ICONSET_DIR}/icon_128x128.png" 2>/dev/null
-            sips -z 256 256   "$ICON_FILE" --out "${ICONSET_DIR}/icon_128x128@2x.png" 2>/dev/null
-            sips -z 256 256   "$ICON_FILE" --out "${ICONSET_DIR}/icon_256x256.png" 2>/dev/null
-            sips -z 512 512   "$ICON_FILE" --out "${ICONSET_DIR}/icon_256x256@2x.png" 2>/dev/null
-            sips -z 512 512   "$ICON_FILE" --out "${ICONSET_DIR}/icon_512x512.png" 2>/dev/null
-            sips -z 1024 1024 "$ICON_FILE" --out "${ICONSET_DIR}/icon_512x512@2x.png" 2>/dev/null
+            APP_BUNDLE="${BUILD_DIR}/${APP_NAME}.app"
+            CONTENTS_DIR="${APP_BUNDLE}/Contents"
+            MACOS_DIR="${CONTENTS_DIR}/MacOS"
+            RESOURCES_DIR="${CONTENTS_DIR}/Resources"
             
-            # Convert iconset to icns
-            iconutil -c icns "$ICONSET_DIR" -o "${RESOURCES_DIR}/AppIcon.icns"
-            rm -rf "$ICONSET_DIR"
-        else
-            # Copy the icns directly
-            cp "$ICON_FILE" "${RESOURCES_DIR}/AppIcon.icns"
-        fi
+            mkdir -p "$MACOS_DIR" "$RESOURCES_DIR"
 
-        # Copy the compiled binary (same as NotifiCLI)
-        cp "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/NotifiCLI" "${MACOS_DIR}/${APP_NAME}"
+            # Use appropriate Info.plist as base and modify bundle ID
+            if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
+                BASE_PLIST="Info_Persistent.plist"
+                # Use a different bundle ID suffix for persistent variants
+                sed "s/com.DiggingForDinos.NotifiPersistent/com.DiggingForDinos.NotifiPersistent.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist"
+            else
+                BASE_PLIST="Info.plist"
+                sed "s/com.DiggingForDinos.NotifiCLI.v2/com.DiggingForDinos.NotifiCLI.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist"
+            fi
 
-        # Ad-hoc sign
-        codesign --force --deep -s - "$APP_BUNDLE"
-        
-        # Move into NotifiCLI.app/Contents/Apps/
-        mv "$APP_BUNDLE" "${BUILD_DIR}/NotifiCLI.app/Contents/Apps/"
-        echo "✅ Built and embedded ${APP_NAME} into NotifiCLI"
+            # Handle icon conversion if PNG
+            if [ "$EXTENSION" == "png" ]; then
+                echo "   Converting PNG to iconset..."
+                ICONSET_DIR="${BUILD_DIR}/${VARIANT_NAME}.iconset"
+                mkdir -p "$ICONSET_DIR"
+                
+                # Generate all required sizes using sips
+                sips -z 16 16     "$ICON_FILE" --out "${ICONSET_DIR}/icon_16x16.png" 2>/dev/null
+                sips -z 32 32     "$ICON_FILE" --out "${ICONSET_DIR}/icon_16x16@2x.png" 2>/dev/null
+                sips -z 32 32     "$ICON_FILE" --out "${ICONSET_DIR}/icon_32x32.png" 2>/dev/null
+                sips -z 64 64     "$ICON_FILE" --out "${ICONSET_DIR}/icon_32x32@2x.png" 2>/dev/null
+                sips -z 128 128   "$ICON_FILE" --out "${ICONSET_DIR}/icon_128x128.png" 2>/dev/null
+                sips -z 256 256   "$ICON_FILE" --out "${ICONSET_DIR}/icon_128x128@2x.png" 2>/dev/null
+                sips -z 256 256   "$ICON_FILE" --out "${ICONSET_DIR}/icon_256x256.png" 2>/dev/null
+                sips -z 512 512   "$ICON_FILE" --out "${ICONSET_DIR}/icon_256x256@2x.png" 2>/dev/null
+                sips -z 512 512   "$ICON_FILE" --out "${ICONSET_DIR}/icon_512x512.png" 2>/dev/null
+                sips -z 1024 1024 "$ICON_FILE" --out "${ICONSET_DIR}/icon_512x512@2x.png" 2>/dev/null
+                
+                # Convert iconset to icns
+                iconutil -c icns "$ICONSET_DIR" -o "${RESOURCES_DIR}/AppIcon.icns"
+                rm -rf "$ICONSET_DIR"
+            else
+                # Copy the icns directly
+                cp "$ICON_FILE" "${RESOURCES_DIR}/AppIcon.icns"
+            fi
+
+            # Copy the compiled binary (match the base type)
+            if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
+                # Need to use the embedded persistent binary
+                cp "${APPS_DIR}/NotifiPersistent.app/Contents/MacOS/NotifiPersistent" "${MACOS_DIR}/${APP_NAME}"
+            else
+                cp "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/NotifiCLI" "${MACOS_DIR}/${APP_NAME}"
+            fi
+
+            # Ad-hoc sign
+            codesign --force --deep -s - "$APP_BUNDLE"
+            
+            # Move into NotifiCLI.app/Contents/Apps/
+            mv "$APP_BUNDLE" "${BUILD_DIR}/NotifiCLI.app/Contents/Apps/"
+            # echo "✅ Built and embedded ${APP_NAME} into NotifiCLI"
+        done
+        echo "✅ Built standard and persistent variants for '${VARIANT_NAME}'"
     done
 fi
 

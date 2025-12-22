@@ -213,6 +213,10 @@ notificli -icon 'KeyboardMaestro' -title 'Macro' -message 'Finished'  # shorthan
 ```
 
 > **Note**: macOS caches app icons. After using a new icon for the first time, a **reboot is required** for the icon to appear correctly in Notification Center.
+>
+> [!WARNING]
+> **Notification Preferences Bloat**
+> Each custom icon variant you create acts as a unique app bundle with its own settings. This means your **System Settings > Notifications** list will grow with an entry for every app icon you add (e.g., `NotifiCLI-Slack`, `NotifiCLI-Terminal`). Be selective with which icons you generate if you want to keep that list tidy!
 
 ## Troubleshooting
 **"Error requesting auth: Notifications are not allowed"**
