@@ -113,7 +113,7 @@ if let replyPlaceholder = replyPlaceholder {
 
 if !actions.isEmpty {
     let customActions = actions.map { actionTitle in
-        UNNotificationAction(identifier: actionTitle, title: actionTitle, options: [.foreground])
+        UNNotificationAction(identifier: actionTitle, title: actionTitle, options: [])
     }
     notificationActions.append(contentsOf: customActions)
 }
