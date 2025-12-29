@@ -159,13 +159,13 @@ if let path = imagePath, (path.lowercased().hasPrefix("http://") || path.lowerca
         // Simple synchronous download for CLI
         if let data = try? Data(contentsOf: url) {
             try data.write(to: destinationURL)
-            print("Downloaded image to \(destinationURL.path)")
+            fputs("Downloaded image to \(destinationURL.path)\n", stderr)
             imagePath = destinationURL.path
         } else {
-            print("Warning: Failed to download image from \(path)")
+            fputs("Warning: Failed to download image from \(path)\n", stderr)
         }
     } catch {
-        print("Warning: Failed to process remote image: \(error.localizedDescription)")
+        fputs("Warning: Failed to process remote image: \(error.localizedDescription)\n", stderr)
     }
 }
 
@@ -181,10 +181,10 @@ if let imagePath = imagePath {
             let attachment = try UNNotificationAttachment(identifier: "image", url: tempAttachmentURL, options: nil)
             content.attachments = [attachment]
         } catch {
-            print("Warning: Could not attach image: \(error.localizedDescription)")
+            fputs("Warning: Could not attach image: \(error.localizedDescription)\n", stderr)
         }
     } else {
-        print("Warning: Image not found at \(imagePath)")
+        fputs("Warning: Image not found at \(imagePath)\n", stderr)
     }
 }
 
