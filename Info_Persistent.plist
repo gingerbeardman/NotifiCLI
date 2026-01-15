@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleIdentifier</key>
-    <string>com.DiggingForDinos.NotifiPersistent.v2</string>
+    <string>com.saihgupr.NotifiPersistent.v2</string>
     <key>CFBundleName</key>
     <string>NotifiPersistent</string>
     <key>CFBundlePackageType</key>

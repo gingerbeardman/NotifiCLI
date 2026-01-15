@@ -99,10 +99,10 @@ if [ -d "$ICONS_DIR" ]; then
             if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
                 BASE_PLIST="Info_Persistent.plist"
                 # Use a different bundle ID suffix for persistent variants
-                sed "s/com.DiggingForDinos.NotifiPersistent/com.DiggingForDinos.NotifiPersistent.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist"
+                sed "s/com.saihgupr.NotifiPersistent/com.saihgupr.NotifiPersistent.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist"
             else
                 BASE_PLIST="Info.plist"
-                sed "s/com.DiggingForDinos.NotifiCLI.v2/com.DiggingForDinos.NotifiCLI.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist"
+                sed "s/com.saihgupr.NotifiCLI.v2/com.saihgupr.NotifiCLI.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist"
             fi
 
             # Handle icon conversion if PNG

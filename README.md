@@ -142,7 +142,7 @@ notificli -title 'Build Failed' -message 'Click to view logs' -url 'https://gith
 
 ### Quick Start (Recommended)
 
-1. **Download** the latest release from [Releases](https://github.com/DiggingForDinos/NotifiCLI/releases/tag/Keyboard-Maestro-Action)
+1. **Download** the latest release from [Releases](https://github.com/saihgupr/NotifiCLI/releases/tag/Keyboard-Maestro-Action)
 2. **Unzip** and move `NotifiCLI.app` to `~/Applications/` (NotifiPersistent is embedded inside)
 3. **Grant permissions**:
    - Double-click `NotifiCLI.app` to allow notifications
@@ -166,7 +166,7 @@ NotifiCLI includes a native **Keyboard Maestro Action** for easy integration int
 
 ### Installation
 1. **Install the main app first**: Download `NotifiCLI.zip`, unzip it, and move `NotifiCLI.app` to your `/Applications` or `~/Applications` folder.
-2. Download `Keyboard-Maestro-Action.zip` from the [releases page](https://github.com/DiggingForDinos/NotifiCLI/releases).
+2. Download `Keyboard-Maestro-Action.zip` from the [releases page](https://github.com/saihgupr/NotifiCLI/releases).
 3. Unzip it and move the resulting `NotifiCLI` folder to:
    `~/Library/Application Support/Keyboard Maestro/Keyboard Maestro Actions/`
    *(Tip: Press Command+Shift+G in Finder and paste that path)*
@@ -231,7 +231,7 @@ Then try the command again.
 
 ## Issues & Feedback
 
-Found a bug or have a feature request? [Open an issue](https://github.com/DiggingForDinos/NotifiCLI/issues)
+Found a bug or have a feature request? [Open an issue](https://github.com/saihgupr/NotifiCLI/issues)
 
 
 If you like this project, please consider giving the repo a ⭐ star!

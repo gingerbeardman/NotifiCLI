@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleIdentifier</key>
-    <string>com.DiggingForDinos.NotifiCLI.v2</string>
+    <string>com.saihgupr.NotifiCLI.v2</string>
     <key>CFBundleName</key>
     <string>NotifiCLI</string>
     <key>CFBundlePackageType</key>
