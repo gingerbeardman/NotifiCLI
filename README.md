@@ -140,7 +140,16 @@ notificli -title 'Build Failed' -message 'Click to view logs' -url 'https://gith
 
 ## Installation
 
-### Quick Start (Recommended)
+### Quick Start (Homebrew)
+
+The easiest way to install NotifiCLI and keep it updated is via the official Homebrew tap:
+
+```bash
+brew tap saihgupr/notificli
+brew install --cask notificli
+```
+
+### Manual Installation
 
 1. **Download** the latest release from [Releases](https://github.com/saihgupr/NotifiCLI/releases)
 2. **Unzip** and move `NotifiCLI.app` to `~/Applications/` (NotifiPersistent is embedded inside)
