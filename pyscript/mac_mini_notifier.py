@@ -1,4 +1,3 @@
-
 import subprocess
 import shlex
 import uuid
@@ -6,6 +5,12 @@ import datetime
 
 # Storage for pending notifications
 _pending_notifications = {}
+
+# Configuration - update these for your environment
+# Using Home Assistant secrets is recommended: SSH_USER = secrets.get("mac_mini_user")
+SSH_USER = "ENTER_USERNAME_HERE"
+SSH_HOST = "ENTER_IP_HERE"
+SSH_KEY_PATH = "/config/.ssh/id_rsa"
 
 
 @service("notify.mac_mini")
@@ -122,9 +127,9 @@ def mac_mini_notify(
     # This prevents thread pool depletion from zombie/hanging sessions
     try:
         # We need to import subprocess inside task.executor sometimes, but here we use it as an arg
-        kill_cmd = ["pkill", "-f", f"ssh.*USER@IP_ADDRESS.*{variant_name}"]
+        kill_cmd = ["pkill", "-f", f"ssh.*{SSH_USER}@{SSH_HOST}.*{variant_name}"]
         task.executor(subprocess.run, kill_cmd, capture_output=True, timeout=5)
-        log.info("Proactively cleared stale SSH sessions")
+        log.info(f"Proactively cleared stale SSH sessions for {SSH_USER}@{SSH_HOST}")
     except Exception as e:
         # Ignore errors if pkill fails or finds no processes
         pass
@@ -134,10 +139,10 @@ def mac_mini_notify(
     os_timeout = wait_timeout + 2
     ssh_command = [
         "timeout", str(os_timeout),
-        "ssh", "-i", "/config/.ssh/id_rsa",
+        "ssh", "-i", SSH_KEY_PATH,
         "-o", "StrictHostKeyChecking=no",
         "-o", "ConnectTimeout=10",
-        "USERNAME@IP_ADDRESS", ## Replace with your username and ip address ##
+        f"{SSH_USER}@{SSH_HOST}",
         notifier_command
     ]
 
@@ -221,8 +226,6 @@ def mac_mini_notify(
     return action_response
 
 
-
-
 @event_trigger("mac_mini_notification_queued")
 def process_queued_notification(notification_id=None, **kwargs):
     """Background processor for queued notifications."""
@@ -237,6 +240,11 @@ def process_queued_notification(notification_id=None, **kwargs):
     action_map = ctx["action_map"]
     wait_timeout = ctx["wait_timeout"]
     response_variable = ctx["response_variable"]
+    
+    response = None
+    action_response = None
+    stdout = ""
+    stderr = ""
     
     log.warning(f"Action map: {action_map}")
     log.warning(f"SSH command: {' '.join(ssh_command)}")
