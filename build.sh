@@ -65,6 +65,7 @@ APPS_DIR="${BUILD_DIR}/NotifiCLI.app/Contents/Apps"
 mkdir -p "$APPS_DIR"
 mv "${BUILD_DIR}/NotifiPersistent.app" "$APPS_DIR/"
 codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
+
 echo "✅ NotifiPersistent embedded in NotifiCLI.app/Contents/Apps/"
 
 # Cleanup backup
@@ -98,13 +99,13 @@ if [ -d "$ICONS_DIR" ]; then
             # Use appropriate Info.plist as base and modify bundle ID
             if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
                 BASE_PLIST="Info_Persistent.plist"
-                # Simplified flat bundle ID: com.saihgupr.Notifi<VariantName>
-                sed "s/com.saihgupr.NotifiPersistent.v2/com.saihgupr.Notifi${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist.tmp"
+                # Simplified flat bundle ID: com.saihgupr.NotifiPersistent.${VARIANT_NAME}
+                sed "s/com.saihgupr.NotifiPersistent.v2/com.saihgupr.NotifiPersistent.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist.tmp"
                 sed -i '' "s/<string>NotifiPersistent<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
             else
                 BASE_PLIST="Info.plist"
-                # Simplified flat bundle ID: com.saihgupr.Notifi${VARIANT_NAME}
-                sed "s/com.saihgupr.NotifiCLI.v2/com.saihgupr.Notifi${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist.tmp"
+                # Simplified flat bundle ID: com.saihgupr.NotifiCLI.${VARIANT_NAME}
+                sed "s/com.saihgupr.NotifiCLI.v2/com.saihgupr.NotifiCLI.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist.tmp"
                 sed -i '' "s/<string>NotifiCLI<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
             fi
             mv "${CONTENTS_DIR}/Info.plist.tmp" "${CONTENTS_DIR}/Info.plist"
@@ -146,6 +147,15 @@ if [ -d "$ICONS_DIR" ]; then
         done
         echo "✅ Built standard and persistent variants for '${VARIANT_NAME}'"
     done
+fi
+
+# --- 4. Attempt to Install to /Applications ---
+INSTALLED_APPS_DIR="/Applications/NotifiCLI.app/Contents/Apps"
+if [ -d "$INSTALLED_APPS_DIR" ] && [ -w "$INSTALLED_APPS_DIR" ]; then
+    echo "📦 Installing variants to /Applications..."
+    # Copy all apps from the embedded Apps folder to ensure all variants are updated
+    cp -R "$APPS_DIR/"* "$INSTALLED_APPS_DIR/"
+    echo "✅ Installed all variants to /Applications/NotifiCLI.app"
 fi
 
 echo ""

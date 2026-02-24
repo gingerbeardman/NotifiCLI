@@ -169,10 +169,10 @@ for BASE_TYPE in "${VARIANTS[@]}"; do
 
     # 1. Info.plist
     if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
-        sed "s/com.saihgupr.NotifiPersistent.v2/com.saihgupr.Notifi${VARIANT_NAME}/" "$INFO_PERSISTENT_PLIST_SRC" > "${CONTENTS_DIR}/Info.plist.tmp"
+        sed "s/com.saihgupr.NotifiPersistent.v2/com.saihgupr.NotifiPersistent.${VARIANT_NAME}/" "$INFO_PERSISTENT_PLIST_SRC" > "${CONTENTS_DIR}/Info.plist.tmp"
         sed -i '' "s/<string>NotifiPersistent<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
     else
-        sed "s/com.saihgupr.NotifiCLI.v2/com.saihgupr.Notifi${VARIANT_NAME}/" "$INFO_PLIST_SRC" > "${CONTENTS_DIR}/Info.plist.tmp"
+        sed "s/com.saihgupr.NotifiCLI.v2/com.saihgupr.NotifiCLI.${VARIANT_NAME}/" "$INFO_PLIST_SRC" > "${CONTENTS_DIR}/Info.plist.tmp"
         sed -i '' "s/<string>NotifiCLI<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
     fi
     mv "${CONTENTS_DIR}/Info.plist.tmp" "${CONTENTS_DIR}/Info.plist"
