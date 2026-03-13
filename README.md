@@ -155,14 +155,14 @@ brew install --cask notificli
 
 ### Manual Installation
 
-1. **Download** the latest release from [Releases](https://github.com/saihgupr/NotifiCLI/releases)
-2. **Unzip** and move `NotifiCLI.app` to `~/Applications/` (NotifiPersistent is embedded inside)
+1. **Download NotifiCLI.dmg** from [Releases](https://github.com/saihgupr/NotifiCLI/releases) (v1.3.3+)
+2. **Open the DMG** and drag `NotifiCLI.app` to your `Applications` folder.
 3. **Grant permissions**:
-   - Double-click `NotifiCLI.app` to allow notifications
-   - For persistent alerts, also open `NotifiCLI.app/Contents/Apps/NotifiPersistent.app`
+   - Double-click `NotifiCLI.app` to allow notifications.
+   - For persistent alerts, also run a test command: `notificli -m "Setup" -p` and follow the prompt.
 4. **Add to PATH** (optional):
    ```bash
-   ln -s ~/Applications/NotifiCLI.app/Contents/MacOS/NotifiCLI /usr/local/bin/notificli
+   ln -s /Applications/NotifiCLI.app/Contents/MacOS/NotifiCLI /usr/local/bin/notificli
    ```
 
 ### Build from Source

@@ -75,8 +75,6 @@ echo "📦 Embedding NotifiPersistent inside NotifiCLI..."
 APPS_DIR="${BUILD_DIR}/NotifiCLI.app/Contents/Apps"
 mkdir -p "$APPS_DIR"
 mv "${BUILD_DIR}/NotifiPersistent.app" "$APPS_DIR/"
-xattr -cr "${BUILD_DIR}/NotifiCLI.app"
-codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
 
 echo "✅ NotifiPersistent embedded in NotifiCLI.app/Contents/Apps/"
 
@@ -162,6 +160,12 @@ if [ -d "$ICONS_DIR" ]; then
         echo "✅ Built standard and persistent variants for '${VARIANT_NAME}'"
     done
 fi
+
+# Final sign of the host app bundle (after all variants are embedded)
+xattr -cr "${BUILD_DIR}/NotifiCLI.app"
+codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
+echo "✅ Final sign of NotifiCLI.app complete"
+
 
 # --- 4. Install wrapper script into the app bundle ---
 echo "📦 Installing wrapper script..."
