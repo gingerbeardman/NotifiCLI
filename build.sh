@@ -149,12 +149,20 @@ if [ -d "$ICONS_DIR" ]; then
     done
 fi
 
-# --- 4. Attempt to Install to /Applications ---
+# --- 4. Install wrapper script into the app bundle ---
+echo "📦 Installing wrapper script..."
+cp "${DIR}/notificli" "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/notificli"
+chmod +x "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/notificli"
+
+# --- 5. Attempt to Install to /Applications ---
 INSTALLED_APPS_DIR="/Applications/NotifiCLI.app/Contents/Apps"
 if [ -d "$INSTALLED_APPS_DIR" ] && [ -w "$INSTALLED_APPS_DIR" ]; then
     echo "📦 Installing variants to /Applications..."
     # Copy all apps from the embedded Apps folder to ensure all variants are updated
     cp -R "$APPS_DIR/"* "$INSTALLED_APPS_DIR/"
+    # Install wrapper script
+    cp "${DIR}/notificli" "/Applications/NotifiCLI.app/Contents/MacOS/notificli"
+    chmod +x "/Applications/NotifiCLI.app/Contents/MacOS/notificli"
     echo "✅ Installed all variants to /Applications/NotifiCLI.app"
 fi
 

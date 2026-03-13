@@ -119,7 +119,16 @@ if [ -z "$ICON_PATH" ] || [ ! -f "$ICON_PATH" ]; then
         
         ICONSET_DIR="${ICONS_DIR}/${VARIANT_NAME}_extracted.iconset"
         mkdir -p "$ICONSET_DIR"
-        # Create at least one high-res version for iconutil
+        # Create all required icon sizes for a valid iconset
+        sips -z 16 16     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_16x16.png" >/dev/null 2>&1
+        sips -z 32 32     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_16x16@2x.png" >/dev/null 2>&1
+        sips -z 32 32     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_32x32.png" >/dev/null 2>&1
+        sips -z 64 64     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_32x32@2x.png" >/dev/null 2>&1
+        sips -z 128 128   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_128x128.png" >/dev/null 2>&1
+        sips -z 256 256   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_128x128@2x.png" >/dev/null 2>&1
+        sips -z 256 256   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_256x256.png" >/dev/null 2>&1
+        sips -z 512 512   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_256x256@2x.png" >/dev/null 2>&1
+        sips -z 512 512   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_512x512.png" >/dev/null 2>&1
         sips -z 1024 1024 "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_512x512@2x.png" >/dev/null 2>&1
         iconutil -c icns "$ICONSET_DIR" -o "${ICONS_DIR}/${VARIANT_NAME}.icns" >/dev/null 2>&1
         rm -rf "$ICONSET_DIR"

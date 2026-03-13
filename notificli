@@ -140,20 +140,19 @@ fi
 OUTPUT=$("$COMMAND" "${PASSTHROUGH_ARGS[@]}" 2>&1)
 EXIT_CODE=$?
 
-if [ $EXIT_CODE -ne 0 ]; then
+if [ $EXIT_CODE -ne 0 ] && [[ "$OUTPUT" == *"Notifications are not allowed"* ]] && [ -n "$VARIANT_APP" ]; then
+    # Re-trigger blessing: register with LaunchServices and open to prompt authorization
+    echo "⚙️  Notification permission missing for '${VARIANT_NAME}'. Requesting authorization..."
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$VARIANT_APP"
+    open "$VARIANT_APP" 2>/dev/null || true
+    echo ""
+    echo "💡 A permission prompt should appear. If not, enable notifications manually:"
+    echo "   System Settings > Notifications > $(basename "$VARIANT_APP" .app)"
+    echo ""
+    echo "Then re-run your command."
+    exit $EXIT_CODE
+elif [ $EXIT_CODE -ne 0 ]; then
     echo "$OUTPUT"
-    if [[ "$OUTPUT" == *"Notifications are not allowed"* ]]; then
-        echo ""
-        echo "💡 TIP: macOS Tahoe/Sequoia requires manual 'trust' for each icon variant."
-        if [ -n "$VARIANT_APP" ]; then
-            echo "   1. Open Finder to: $(dirname "$VARIANT_APP")"
-            echo "   2. Right-click $(basename "$VARIANT_APP") and choose 'Open'."
-            echo "   3. If blocked, go to 'System Settings > Privacy & Security' and click 'Open Anyway'."
-        else
-            echo "   1. Open Finder and locate the variant app in /Applications/NotifiCLI.app/Contents/Apps/"
-            echo "   2. Right-click it and choose 'Open'."
-        fi
-    fi
     exit $EXIT_CODE
 else
     echo "$OUTPUT"
