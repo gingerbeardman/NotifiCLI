@@ -3,17 +3,19 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleIdentifier</key>
-    <string>com.saihgupr.NotifiPersistent.v5</string>
+    <string>com.saihgupr.NotifiCLI.Persistent.v7</string>
     <key>CFBundleExecutable</key>
     <string>NotifiPersistent</string>
     <key>CFBundleName</key>
     <string>NotifiCLI (Persistent)</string>
+    <key>CFBundleDisplayName</key>
+    <string>NotifiCLI (Persistent)</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.3.1</string>
+    <string>1.3.3</string>
     <key>CFBundleVersion</key>
-    <string>1.3.1</string>
+    <string>1.3.3</string>
     <key>CFBundleIconFile</key>
     <string>AppIcon</string>
     <key>LSUIElement</key>

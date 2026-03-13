@@ -112,12 +112,14 @@ if [ -d "$ICONS_DIR" ]; then
             # Use appropriate Info.plist as base and modify bundle ID
             if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
                 cp Info_Persistent.plist "${CONTENTS_DIR}/Info.plist"
-                /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.saihgupr.NotifiPersistent.${VARIANT_NAME}" "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.saihgupr.NotifiCLI.Persistent.${VARIANT_NAME}" "${CONTENTS_DIR}/Info.plist"
                 /usr/libexec/PlistBuddy -c "Set :CFBundleName '${VARIANT_DISPLAY_NAME} (Persistent)'" "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string '${VARIANT_DISPLAY_NAME} (Persistent)'" "${CONTENTS_DIR}/Info.plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName '${VARIANT_DISPLAY_NAME} (Persistent)'" "${CONTENTS_DIR}/Info.plist"
             else
                 cp Info.plist "${CONTENTS_DIR}/Info.plist"
                 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.saihgupr.NotifiCLI.${VARIANT_NAME}" "${CONTENTS_DIR}/Info.plist"
                 /usr/libexec/PlistBuddy -c "Set :CFBundleName '${VARIANT_DISPLAY_NAME}'" "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string '${VARIANT_DISPLAY_NAME}'" "${CONTENTS_DIR}/Info.plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName '${VARIANT_DISPLAY_NAME}'" "${CONTENTS_DIR}/Info.plist"
             fi
 
             # 2. Icon conversion or copy
