@@ -1,12 +1,14 @@
 #!/bin/bash
-# package.sh - Build and package NotifiCLI for release
+# package.sh - Build and package NotifiCLI for release using DMGMaker
 set -e
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="${DIR}/build"
-RELEASE_ZIP="${DIR}/NotifiCLI.app.zip"
+DMG_MAKER_DIR="/Users/chrislapointe/Projects/CurrentProjects/DMGMaker"
+VERSION="1.3.4"
+OUTPUT_NAME="NotifiCLI-v${VERSION}"
 
-echo "🔨 Starting clean build..."
+echo "🔨 Starting clean build for v${VERSION}..."
 ./build.sh
 
 echo "🔍 Verifying build contents..."
@@ -20,17 +22,22 @@ fi
 
 echo "✅ Verified: $APPS_COUNT items found in Contents/Apps/"
 
-echo "📦 Creating release ZIP..."
-# Remove old zip if exists
-[ -f "$RELEASE_ZIP" ] && rm "$RELEASE_ZIP"
-
-# Use cd to avoid including the 'build/' path prefix in the zip
-cd "$BUILD_DIR"
-zip -r -q "$RELEASE_ZIP" "NotifiCLI.app"
+echo "📀 Creating DMG using DMGMaker..."
+# Run DMGMaker in CLI mode
+cd "$DMG_MAKER_DIR"
+swift run "DMG Maker" --app "${BUILD_DIR}/NotifiCLI.app" --name "$OUTPUT_NAME"
 cd "$DIR"
 
-echo "✨ Package created: $RELEASE_ZIP"
-echo "📊 Size: $(du -sh "$RELEASE_ZIP" | cut -f1)"
-echo "🔐 SHA256: $(shasum -a 256 "$RELEASE_ZIP" | cut -d' ' -f1)"
+# Move the DMG from build/ to project root for easy access
+if [ -f "${BUILD_DIR}/${OUTPUT_NAME}.dmg" ]; then
+    mv "${BUILD_DIR}/${OUTPUT_NAME}.dmg" "${DIR}/"
+    echo "✨ DMG created: ${DIR}/${OUTPUT_NAME}.dmg"
+    echo "📊 Size: $(du -sh "${DIR}/${OUTPUT_NAME}.dmg" | cut -f1)"
+    echo "🔐 SHA256: $(shasum -a 256 "${DIR}/${OUTPUT_NAME}.dmg" | cut -d' ' -f1)"
+else
+    echo "❌ Error: DMG was not created at ${BUILD_DIR}/${OUTPUT_NAME}.dmg"
+    exit 1
+fi
+
 echo ""
-echo "🚀 Ready for release!"
+echo "🚀 Ready for release v${VERSION}!"

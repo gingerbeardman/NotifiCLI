@@ -15,7 +15,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qqE3CwPIyxkLTN86Bbe8iToP/9zLo9yvCHBSXrsvwt4=
+			aig4CkdsLwbsryVZ1CW0OAe1hCvfDYV7t2i0ITzoksw=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Calculator.app/Contents/MacOS/NotifiCLI-Calculator</key>
@@ -36,7 +36,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/Kpwn941i5kENGPaXQ7xj+I84fS04r6poGiNoBmaMBE=
+			S+ashSueGMx1EoUheJLkDzR3i2jYRPtae0w9THEGglY=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Calculator.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -64,7 +64,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xdV+3Gh0MgPHS6YPAo9CkXH5FRXggXmp0FsQeB0CRV4=
+			3fBxSatktXwBlhvqCNv7x7itWkVF7oyd8356wCDQWWQ=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Calendar.app/Contents/MacOS/NotifiCLI-Calendar</key>
@@ -85,7 +85,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			a4rviba9rUKE1QAvvGqUODrJHk7od3RPn9om8gH6Fsc=
+			G5I4weDCx56ffBJ8TnfTXEiolyCNnErXNa+w0BTUZes=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Calendar.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -113,7 +113,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mQUJpdvTtGNZ/ZMkK5kt6fs5W+Tl+C+I+/U6P0VtIAk=
+			srOCxE1j6o6wrBWt+7NNPE+0Z5Iql35ZqfsDpjrsxgY=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Chess.app/Contents/MacOS/NotifiCLI-Chess</key>
@@ -134,7 +134,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FvEmdvZXrc6E4Vj2/Q2KcM5tKp02qd7MG9kkOeL5RgY=
+			vonAN5i8UMLAuQO7GSRauzm1R05j+F5+nk4zWCt8las=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Chess.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -162,7 +162,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sBZm9NUFk8YlYxPDLUmZr5jgeB+CdKCKzoTlFzSVTo4=
+			GhFdCXdI0h00ctSyAh4kubAJIzpn9cza2QPo1JTna5Q=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Frigate.app/Contents/MacOS/NotifiCLI-Frigate</key>
@@ -183,7 +183,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			q1CL20qb+skQWYk7OT1cFKnXKwPX8Wb4g1CWdAQa1Zc=
+			qmdSDIqCkkFUw29zFP40H3BcAck/d8NUXFbVHrqAFOE=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Frigate.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -211,7 +211,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4XtxkWpQDbHWq1Ro5uTJCsIWoBvaISzx/BzgGsxdx2A=
+			UYkyaqkWNMXpMjocuFZJuqi7aYMZoH7QjmP1irnOD8g=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-FrigateEvents.app/Contents/MacOS/NotifiCLI-FrigateEvents</key>
@@ -232,7 +232,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kCUBSDOFaKYgD81IhjaVHHDOs8P0rF607YRGnbJb4lM=
+			4uk80mUaZOHrR/mf5td5Ysij6xtP1BXd3Ahx9Fh8E9k=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-FrigateEvents.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -260,7 +260,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rfJxP2fPOwhNvbuiZd5tjoKsBX+Vf5ofP+TURxkeN1A=
+			PMxL84Xca1e3JBdwT/hAy2IS311JGUuoLKv96kCtFhg=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-HomeAssistant.app/Contents/MacOS/NotifiCLI-HomeAssistant</key>
@@ -281,7 +281,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			W17HjsxEj3IRNGA14lnGNzgjBq630CUflYVWVVjhWvM=
+			Jh1KRC0w7bARKLq1+T+dHcHGeiWqFyCezgZffKlagAg=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-HomeAssistant.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -309,7 +309,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			NFPVrPiO5mNwGwUYz4zCWnsHChezP5cAE43xEbP6zhk=
+			2+AXQjSqJ1CD8gI2LBJWi+7Uxk6r3Mwsy3fXqM3h+rg=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-KeyboardMaestro.app/Contents/MacOS/NotifiCLI-KeyboardMaestro</key>
@@ -330,7 +330,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BQ4w8v/d9VC0kMj9OS6LPYsCGiM0VCYvhXSRzOWlDnI=
+			Niu5MscrcAmFs27lGPU3hJPdG80GxLQ6xpcpgSnIkEU=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-KeyboardMaestro.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -358,7 +358,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/r5IsVXP5GsoHeVansL+DNzTFUAhnzlewK8nWVYfVfs=
+			RGnsJ35OQakZt2CTzf5N5nR8W8mogv+r4DhiBdp2Kd0=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Music.app/Contents/MacOS/NotifiCLI-Music</key>
@@ -379,7 +379,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Utcr2nib3cN7Lh76jTmBLZ/lV8ydL279iTKWLyzZmic=
+			f0xpzQJzgOu7y5yzZNZ1a7LCwpliA3N5y+eIMnu8jlk=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Music.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -407,7 +407,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wr2Mv9aAN7sxygqiXZ3hUFGd384NKBQe79W8B1ufFs0=
+			K3ylK4pvXK/8JJ5VS7nJue9L678QYBGfPuZiRTL451M=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Notes.app/Contents/MacOS/NotifiCLI-Notes</key>
@@ -428,7 +428,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mQfq/WmY5J7/32UEmlpb191PqVa0SkneeDIheb8KpjA=
+			/t0t28KycgO5llX468iq9p6QV+aC432DIlZfdyr7dB8=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Notes.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -456,7 +456,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MAg7xt3xbCywqCrm/GLZSTJUhj4dTp4lIVq0JykO7+I=
+			mmstqJb1RX4o4hFpNajzV5IZN9eFxJhzRVUJiEmJclw=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Safari.app/Contents/MacOS/NotifiCLI-Safari</key>
@@ -477,7 +477,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4l08LveJ1JibCDsna1CXO+cZc4uycIs69YrTNPy7DHU=
+			UbZU0cLUe9Jg1fb9bqOusYZsltw3F96Bqr6MHogCXKs=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Safari.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -505,7 +505,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ttL7DcWOZTeFDwjjI9hJfo+0W8nnHEFQcWU4HXkJOFA=
+			h7O0sXC7mk5wHT5WT/O/326f8D2WPh7t0zorZdms5x0=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Spotify.app/Contents/MacOS/NotifiCLI-Spotify</key>
@@ -526,7 +526,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FFoxKmitz7E3nbI6hzZ7wFR304uCL+c+lHQk0SBCky0=
+			RE+kd5wpBdElAZshGY62hOWYe7Am0m8FOnZ0Ao7P5zo=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Spotify.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -554,7 +554,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			B4+qPUZcvm/s4yjeQOhRRUinf08/PopL/ZWddsLzP1U=
+			3GW1UPR720X2bY6eB56mTEBbLFTKWrtMpmHI+hBIXU0=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Terminal.app/Contents/MacOS/NotifiCLI-Terminal</key>
@@ -575,7 +575,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZQNi+OaS2/J85E328dzs8tmmCG8s+Ba+Wmsr2bDRWAI=
+			wpsfQF7O2ln7fxsMSWahk7zczaAPZVwSMhdLiQAPgFc=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-Terminal.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -603,7 +603,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LuT/c8QhwOVtTbLtlD0PY67fqsLkiYcFjo71tX4I3vw=
+			L5RiCXyqKZqUzRqSAXWiT0SRCfh7jBQtbbLJ7+4Op1I=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-TextEdit.app/Contents/MacOS/NotifiCLI-TextEdit</key>
@@ -624,7 +624,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			a3zEVqjqlXjvQM6Ffhutef4ViRdnFHrEwqnGrAVdbmk=
+			ixG8D8mECQjia27yTf+QwnBq8dInVfTSHTwA4W0S5sM=
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-TextEdit.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -652,7 +652,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			lfnBtUKECd09RzCyUVqRHwAXMzRoljJ7poCFKRjkBD4=
+			NB5ZgYzFH+r/oIvEXEusYzdjEMgys8pZb0sAwgdnOf4=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Calculator.app/Contents/MacOS/NotifiPersistent-Calculator</key>
@@ -673,7 +673,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vst0Ofjp8Nn+aMUi0iJyR64mNKULKiKFCnnNzCm6CiQ=
+			pZFOXapWZYFtkQa5MdGVDXVKu8daMyl/pIkIMlFWozI=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Calculator.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -701,7 +701,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			09+dOsH3/tZtQAX8uCKGVkffPym+vt/lS9FdNcfhaH8=
+			3Lv2VQrAkNVu3VfH6Ly46tvLR7dS3RGO/3rxvYxA0Ds=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Calendar.app/Contents/MacOS/NotifiPersistent-Calendar</key>
@@ -722,7 +722,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xRnaJarvK/WVYiZDy/nAopKW7iP+iQJjU8jFRkaTZjA=
+			Xc2obxBQ07rOE6g3PtfLkmLGtMi/rK+OE7LdYKesFNY=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Calendar.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -750,7 +750,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			o5BJWmAsbLQcaAoj0ffO0bXwEi64eIRZFRxYcrVGpUI=
+			jm+6yN3RyHN4f3DlJYTbcqBUXkmpeNYDwGC3+btztyw=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Chess.app/Contents/MacOS/NotifiPersistent-Chess</key>
@@ -771,7 +771,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3yUg0q/R/+PchIYf+YyClwn1PoZIaK6KYjEgvGZ8Hrk=
+			jHjO11A4cgdMU3toQqGXUCoOG2n1hOwkRwQsUjczO6c=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Chess.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -799,7 +799,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vQAOgJnSfaBYjcKxAlz+rVIRfRj/+4cl2Hiu5pOGECA=
+			QUgEuQ2QwtgVhnQkq38ZqPksaTg/zif7XAPpI4KffnA=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Frigate.app/Contents/MacOS/NotifiPersistent-Frigate</key>
@@ -820,7 +820,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			M2vvb/AN2vT0HfZXboWcexnqwp06brFxX9uzlGpod/U=
+			WjJrQHPOHmwvPHSqRrMlBGAhZ75Sz3oXhPflJrPbvaY=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Frigate.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -848,7 +848,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			X5YvE3+1C1Vg8VX/7w4LR1Yp6hM0n4MCUmzoILMwFTM=
+			5omlGU54PwgbdAXWQ63xa0BEj4uFsf8jeurq1SL5Ybc=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-FrigateEvents.app/Contents/MacOS/NotifiPersistent-FrigateEvents</key>
@@ -869,7 +869,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SMmfCkfQnIk7LiKvajXcNVC/0E/d5sVjvIab45eEBRU=
+			i8ozpdI+Q4UHNZI/ul9nqR8ZLl4FOtJCfIrkrozSDhc=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-FrigateEvents.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -897,7 +897,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hK4MsuphZSiWkuGM2aXmPHJbvHaRNvTYY5L2Z5g/HC0=
+			3FMOWx2HmWydQMAGaLqOQ/RHE1BuwSINpBuTtdmB358=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-HomeAssistant.app/Contents/MacOS/NotifiPersistent-HomeAssistant</key>
@@ -918,7 +918,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			e7yktl169raMBig62TUHY+JZH7jUPrllgusAVo+BAr8=
+			0MlJc/WqfqFVDhg5cYsFFmkvKQnn294mmaO2lNde3S4=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-HomeAssistant.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -946,7 +946,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ai01l6apaWshtS1ekBocyIE/cc10fvWAqjOfQcZRAeI=
+			qq0JuQ+Z476RM+Omvu5Q1KrabmQoiaGNKXOXYCmvQKs=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-KeyboardMaestro.app/Contents/MacOS/NotifiPersistent-KeyboardMaestro</key>
@@ -967,7 +967,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eHMtXENg11mm8SxyigT8uNKPiCQy04mma/Qmk71oi2Y=
+			3I0mkXjTwaJ6OMUV8KEuzQ4HyCUI3/iaB93yS/jHrMw=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-KeyboardMaestro.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -995,7 +995,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gzJ/BJCQWA2CHFS8sa+PgybIlhm1kMT7F+Oz/gEul14=
+			AK62eYcGnoxnMSJDTyDdFI/s8jNqP8ZQQ9z3A0ccJ9U=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Music.app/Contents/MacOS/NotifiPersistent-Music</key>
@@ -1016,7 +1016,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tM0+D2IvfyjAtwvvORJbfAl9nADlXyA3P5j+NfTrFgQ=
+			YUW+nzXViuspB7is90E92RfNaj4Ku26l5buP5JZzJxY=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Music.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -1044,7 +1044,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DfnxjcU/ELfkfa2nPMGam37v82zSgdouL1o1R6u7c4Y=
+			HXO7OAKsZWWsyIPDmElVWl5TjW9g6nCJNf/xirO9xz8=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Notes.app/Contents/MacOS/NotifiPersistent-Notes</key>
@@ -1065,7 +1065,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vhsIj5eTu0OYXmYos/vzeFLYWoeTFJkY3ACRUKD01tE=
+			4fVLz8kkHd83Qi6+Fks5IcjKdZVkl+WEHkGHuBUhaDM=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Notes.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -1093,7 +1093,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IzGNowUxxoqGFTfgGnPlj9R0qBkCbx2xyowbuleapNU=
+			tDbjY6fMflbTSigUGSGJ02epikMpq72Qk4uZEUtU320=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Safari.app/Contents/MacOS/NotifiPersistent-Safari</key>
@@ -1114,7 +1114,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7Kjq4FifT2vC+AZ/f7A7EXwYRPWpG1/pGNaVZKU3kO4=
+			LkuyQGH00NrDAmRVDsGKV1Dq5V8TGfhJwkEFjFKCk8Q=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Safari.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -1142,7 +1142,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PEJkWix00YrCV34rNT+YXsoSaFkI21NrY8NXNMVF120=
+			yAKm1p68Ifbf2xQNl4KFvIU/ExcJiuysSzQtfD8RDNo=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Spotify.app/Contents/MacOS/NotifiPersistent-Spotify</key>
@@ -1163,7 +1163,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GCiu90NnYMOwbSoM4sjOOhE4FNJcq5cuNV+WIrRcyz4=
+			653U2zAKvfMrBhIY3NQbvWaEOXJVQ9WeRMTqf7FLk6U=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Spotify.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -1191,7 +1191,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hJQUyVYhTDi8h4jlIjSfMcZ5oADe3oXKpc8u8GCJ0i4=
+			u7zjdhu/8kzpsMJILZHYAN9iYrNNy/iCEq41H9LF3xs=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Terminal.app/Contents/MacOS/NotifiPersistent-Terminal</key>
@@ -1212,7 +1212,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EV5maOWUD2ltaiQD0IbfQIHzNWBap6ohK8BXaAJKlZE=
+			dedsn/zFxu3i7EipHNdhq/FZ1U6rMpTzltTn9xAT4II=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-Terminal.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -1240,7 +1240,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/PK4Ek3QCTxCOKW3L0ZovB35hm177auyR9hCqR8PSVM=
+			nCvQ9ZtoQ6PktavjAGWtAo3J8KXQLmbt0DuO+/p/xUI=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-TextEdit.app/Contents/MacOS/NotifiPersistent-TextEdit</key>
@@ -1261,7 +1261,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			h/UNQnL4fLaq0u2zWFNeUb1ujOjNtXw0jzCr2tT6uzc=
+			zMGLjfcyYh9vtMVeNgALiDhzASW6DnMEx8LZGjTqdWQ=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent-TextEdit.app/Contents/_CodeSignature/CodeRequirements</key>
@@ -1289,14 +1289,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EMhHS0Sw7nh+aw/Wp/UU8Yl9Wzef855Fw8eBScvaqfA=
+			MiL0pYuCAY+Zxlm1dRIND6K6DmUX1RBmd49KVyFTy1c=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9h4vHwuQiiLXA+2vY/n6nYA5kcAbZJ5/FOBeDbe3ZBs=
+			LYk10g1ydP2kp8mmJAf9VZc22D8NI6rMkbKsGnRNe5M=
 			</data>
 		</dict>
 		<key>Apps/NotifiPersistent.app/Contents/Resources/AppIcon.icns</key>
