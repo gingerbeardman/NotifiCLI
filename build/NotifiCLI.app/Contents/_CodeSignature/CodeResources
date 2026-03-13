@@ -11,6 +11,55 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Apps/NotifiCLI-AppStore.app/Contents/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FTMGuuyJ9ObrGSW1cjEL0ppvPUiV6ZpuwlR1aI9Nkx8=
+			</data>
+		</dict>
+		<key>Apps/NotifiCLI-AppStore.app/Contents/MacOS/NotifiCLI-AppStore</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HsyyUJRZ+zqX9C7SMicNrRck1gJdhkqQG4k6UmNqsGY=
+			</data>
+		</dict>
+		<key>Apps/NotifiCLI-AppStore.app/Contents/Resources/AppIcon.icns</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wO9bBJp9hy3FmST8xD+XLxFmLArpBLarFqTWK0PG7aI=
+			</data>
+		</dict>
+		<key>Apps/NotifiCLI-AppStore.app/Contents/_CodeSignature/CodeDirectory</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			SMigdB/Nw7BX7MCmiLf5VXWnGz93ULuA0UR1MQH4PA4=
+			</data>
+		</dict>
+		<key>Apps/NotifiCLI-AppStore.app/Contents/_CodeSignature/CodeRequirements</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mHkgkE6rZQ51eIwFSqCwUk5qgL/HGqMt+NI3phdD+YY=
+			</data>
+		</dict>
+		<key>Apps/NotifiCLI-AppStore.app/Contents/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BXWjaEl6ZWvTiwJVzBDFYBIusKVdWY7R1mnWRL5wzEM=
+			</data>
+		</dict>
+		<key>Apps/NotifiCLI-AppStore.app/Contents/_CodeSignature/CodeSignature</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+			</data>
+		</dict>
 		<key>Apps/NotifiCLI-Calculator.app/Contents/Info.plist</key>
 		<dict>
 			<key>hash2</key>
@@ -642,6 +691,55 @@
 			</data>
 		</dict>
 		<key>Apps/NotifiCLI-TextEdit.app/Contents/_CodeSignature/CodeSignature</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+			</data>
+		</dict>
+		<key>Apps/NotifiPersistent-AppStore.app/Contents/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			LO65yUJBpCRwNiEptd20c4OPol6+SAjZe7hw3KCOYfc=
+			</data>
+		</dict>
+		<key>Apps/NotifiPersistent-AppStore.app/Contents/MacOS/NotifiPersistent-AppStore</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VvS/Sh01YSY6gL14dI1SPeMB6jz2/o6BKOwzo08lyhA=
+			</data>
+		</dict>
+		<key>Apps/NotifiPersistent-AppStore.app/Contents/Resources/AppIcon.icns</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wO9bBJp9hy3FmST8xD+XLxFmLArpBLarFqTWK0PG7aI=
+			</data>
+		</dict>
+		<key>Apps/NotifiPersistent-AppStore.app/Contents/_CodeSignature/CodeDirectory</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rGBerxDQJofUk2Vs+484sQNNEg8FdVsHZlmIluXhBPU=
+			</data>
+		</dict>
+		<key>Apps/NotifiPersistent-AppStore.app/Contents/_CodeSignature/CodeRequirements</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mHkgkE6rZQ51eIwFSqCwUk5qgL/HGqMt+NI3phdD+YY=
+			</data>
+		</dict>
+		<key>Apps/NotifiPersistent-AppStore.app/Contents/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			nukrdpDFgg1KdBnonU0FmdUy5y7lknT1BVwB8VA0KcU=
+			</data>
+		</dict>
+		<key>Apps/NotifiPersistent-AppStore.app/Contents/_CodeSignature/CodeSignature</key>
 		<dict>
 			<key>hash2</key>
 			<data>
@@ -1312,6 +1410,15 @@
 			<data>
 			xqgLwHIAKU3mnuwmPqm6nBtvbNGCY43Qaaq9M7LXnVk=
 			</data>
+		</dict>
+		<key>MacOS/notificli</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			qp6YwkdtPrXLu3uZBxaLlJzkKGM=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"aa9e98c2476d3eb5cbbb7b9907168b949ce42863"</string>
 		</dict>
 		<key>Resources/AppIcon.icns</key>
 		<dict>

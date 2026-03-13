@@ -161,16 +161,15 @@ if [ -d "$ICONS_DIR" ]; then
     done
 fi
 
-# Final sign of the host app bundle (after all variants are embedded)
-xattr -cr "${BUILD_DIR}/NotifiCLI.app"
-codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
-echo "✅ Final sign of NotifiCLI.app complete"
-
-
 # --- 4. Install wrapper script into the app bundle ---
 echo "📦 Installing wrapper script..."
 cp "${DIR}/notificli" "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/notificli"
 chmod +x "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/notificli"
+
+# Final sign of the host app bundle (after all variants and the wrapper are embedded)
+xattr -cr "${BUILD_DIR}/NotifiCLI.app"
+codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
+echo "✅ Final sign of NotifiCLI.app complete"
 
 # --- 5. Attempt to Install to /Applications ---
 INSTALLED_APPS_DIR="/Applications/NotifiCLI.app/Contents/Apps"
