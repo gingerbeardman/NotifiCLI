@@ -4,6 +4,7 @@ set -e
 BUILD_DIR="build"
 ICONS_DIR="icons"
 BACKUP_DIR=".build_backup"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Backup existing binaries if main.swift doesn't exist
 if [ ! -f "main.swift" ]; then
@@ -45,16 +46,26 @@ for APP_NAME in "${BASE_APPS[@]}"; do
 
     # Compile Swift or use backup binary
     if [ -f "main.swift" ]; then
-        swiftc main.swift -o "${MACOS_DIR}/${APP_NAME}" -target arm64-apple-macosx11.0
+        if [ "$APP_NAME" == "NotifiCLI" ]; then
+            BINARY_NAME="NotifiCLI-Binary"
+        else
+            BINARY_NAME="$APP_NAME"
+        fi
+        swiftc main.swift -o "${MACOS_DIR}/${BINARY_NAME}" -target arm64-apple-macosx11.0
     elif [ -f "$BACKUP_DIR/NotifiCLI" ]; then
         echo "   Using preserved binary..."
-        cp "$BACKUP_DIR/NotifiCLI" "${MACOS_DIR}/${APP_NAME}"
+        if [ "$APP_NAME" == "NotifiCLI" ]; then
+            cp "$BACKUP_DIR/NotifiCLI" "${MACOS_DIR}/NotifiCLI-Binary"
+        else
+            cp "$BACKUP_DIR/NotifiCLI" "${MACOS_DIR}/${APP_NAME}"
+        fi
     else
         echo "❌ Error: No main.swift and no existing binary to copy!"
         exit 1
     fi
 
     # Ad-hoc sign
+    xattr -cr "$APP_BUNDLE"
     codesign --force --deep -s - "$APP_BUNDLE"
     echo "✅ Built ${APP_BUNDLE}"
 done
@@ -64,7 +75,6 @@ echo "📦 Embedding NotifiPersistent inside NotifiCLI..."
 APPS_DIR="${BUILD_DIR}/NotifiCLI.app/Contents/Apps"
 mkdir -p "$APPS_DIR"
 mv "${BUILD_DIR}/NotifiPersistent.app" "$APPS_DIR/"
-codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
 
 echo "✅ NotifiPersistent embedded in NotifiCLI.app/Contents/Apps/"
 
@@ -81,7 +91,8 @@ if [ -d "$ICONS_DIR" ]; then
         # Get variant name and extension
         FILENAME=$(basename "$ICON_FILE")
         EXTENSION="${FILENAME##*.}"
-        VARIANT_NAME="${FILENAME%.*}"
+        VARIANT_DISPLAY_NAME="${FILENAME%.*}"
+        VARIANT_NAME="${VARIANT_DISPLAY_NAME// /}"
         # Process both variants: Standard and Persistent
         VARIANTS=("NotifiCLI" "NotifiPersistent")
         
@@ -98,17 +109,16 @@ if [ -d "$ICONS_DIR" ]; then
 
             # Use appropriate Info.plist as base and modify bundle ID
             if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
-                BASE_PLIST="Info_Persistent.plist"
-                # Simplified flat bundle ID: com.saihgupr.NotifiPersistent.${VARIANT_NAME}
-                sed "s/com.saihgupr.NotifiPersistent.v2/com.saihgupr.NotifiPersistent.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist.tmp"
-                sed -i '' "s/<string>NotifiPersistent<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
+                cp Info_Persistent.plist "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.saihgupr.NotifiCLI.Persistent.${VARIANT_NAME}" "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Set :CFBundleName '${VARIANT_DISPLAY_NAME} (Persistent)'" "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string '${VARIANT_DISPLAY_NAME} (Persistent)'" "${CONTENTS_DIR}/Info.plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName '${VARIANT_DISPLAY_NAME} (Persistent)'" "${CONTENTS_DIR}/Info.plist"
             else
-                BASE_PLIST="Info.plist"
-                # Simplified flat bundle ID: com.saihgupr.NotifiCLI.${VARIANT_NAME}
-                sed "s/com.saihgupr.NotifiCLI.v2/com.saihgupr.NotifiCLI.${VARIANT_NAME}/" "$BASE_PLIST" > "${CONTENTS_DIR}/Info.plist.tmp"
-                sed -i '' "s/<string>NotifiCLI<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
+                cp Info.plist "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.saihgupr.NotifiCLI.${VARIANT_NAME}" "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Set :CFBundleName '${VARIANT_DISPLAY_NAME}'" "${CONTENTS_DIR}/Info.plist"
+                /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string '${VARIANT_DISPLAY_NAME}'" "${CONTENTS_DIR}/Info.plist" 2>/dev/null || /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName '${VARIANT_DISPLAY_NAME}'" "${CONTENTS_DIR}/Info.plist"
             fi
-            mv "${CONTENTS_DIR}/Info.plist.tmp" "${CONTENTS_DIR}/Info.plist"
 
             # 2. Icon conversion or copy
             if [ "$EXTENSION" == "png" ]; then
@@ -135,10 +145,12 @@ if [ -d "$ICONS_DIR" ]; then
             if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
                 cp "${APPS_DIR}/NotifiPersistent.app/Contents/MacOS/NotifiPersistent" "${MACOS_DIR}/${APP_NAME}"
             else
-                cp "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/NotifiCLI" "${MACOS_DIR}/${APP_NAME}"
+                # Copy the binary with -Binary suffix from base app to variant app
+                cp "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/NotifiCLI-Binary" "${MACOS_DIR}/${APP_NAME}"
             fi
 
             # 4. Ad-hoc sign (Removed entitlements for Tahoe compatibility)
+            xattr -cr "$APP_BUNDLE"
             codesign --force --deep -s - "$APP_BUNDLE"
             
             # Move into NotifiCLI.app/Contents/Apps/
@@ -149,12 +161,25 @@ if [ -d "$ICONS_DIR" ]; then
     done
 fi
 
-# --- 4. Attempt to Install to /Applications ---
+# --- 4. Install wrapper script into the app bundle ---
+echo "📦 Installing wrapper script..."
+cp "${DIR}/notificli" "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/notificli"
+chmod +x "${BUILD_DIR}/NotifiCLI.app/Contents/MacOS/notificli"
+
+# Final sign of the host app bundle (after all variants and the wrapper are embedded)
+xattr -cr "${BUILD_DIR}/NotifiCLI.app"
+codesign --force --deep -s - "${BUILD_DIR}/NotifiCLI.app"
+echo "✅ Final sign of NotifiCLI.app complete"
+
+# --- 5. Attempt to Install to /Applications ---
 INSTALLED_APPS_DIR="/Applications/NotifiCLI.app/Contents/Apps"
 if [ -d "$INSTALLED_APPS_DIR" ] && [ -w "$INSTALLED_APPS_DIR" ]; then
     echo "📦 Installing variants to /Applications..."
     # Copy all apps from the embedded Apps folder to ensure all variants are updated
     cp -R "$APPS_DIR/"* "$INSTALLED_APPS_DIR/"
+    # Install wrapper script
+    cp "${DIR}/notificli" "/Applications/NotifiCLI.app/Contents/MacOS/notificli"
+    chmod +x "/Applications/NotifiCLI.app/Contents/MacOS/notificli"
     echo "✅ Installed all variants to /Applications/NotifiCLI.app"
 fi
 

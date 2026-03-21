@@ -10,6 +10,7 @@ cd "$DIR"
 
 APP_PATH="$1"
 VARIANT_NAME="$2"
+DISPLAY_NAME="${3:-$VARIANT_NAME}"
 ICONS_DIR="icons"
 BUILD_DIR="build"
 
@@ -37,7 +38,7 @@ else
     exit 1
 fi
 
-NOTIFICLI_BIN="$BASE_SRC/Contents/MacOS/NotifiCLI"
+NOTIFICLI_BIN="$BASE_SRC/Contents/MacOS/NotifiCLI-Binary"
 PERSISTENT_BIN="$BASE_SRC/Contents/Apps/NotifiPersistent.app/Contents/MacOS/NotifiPersistent"
 
 # Fallback for persistent if not embedded yet (local dev case)
@@ -119,7 +120,16 @@ if [ -z "$ICON_PATH" ] || [ ! -f "$ICON_PATH" ]; then
         
         ICONSET_DIR="${ICONS_DIR}/${VARIANT_NAME}_extracted.iconset"
         mkdir -p "$ICONSET_DIR"
-        # Create at least one high-res version for iconutil
+        # Create all required icon sizes for a valid iconset
+        sips -z 16 16     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_16x16.png" >/dev/null 2>&1
+        sips -z 32 32     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_16x16@2x.png" >/dev/null 2>&1
+        sips -z 32 32     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_32x32.png" >/dev/null 2>&1
+        sips -z 64 64     "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_32x32@2x.png" >/dev/null 2>&1
+        sips -z 128 128   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_128x128.png" >/dev/null 2>&1
+        sips -z 256 256   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_128x128@2x.png" >/dev/null 2>&1
+        sips -z 256 256   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_256x256.png" >/dev/null 2>&1
+        sips -z 512 512   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_256x256@2x.png" >/dev/null 2>&1
+        sips -z 512 512   "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_512x512.png" >/dev/null 2>&1
         sips -z 1024 1024 "$EXTRACTOR_PNG" --out "${ICONSET_DIR}/icon_512x512@2x.png" >/dev/null 2>&1
         iconutil -c icns "$ICONSET_DIR" -o "${ICONS_DIR}/${VARIANT_NAME}.icns" >/dev/null 2>&1
         rm -rf "$ICONSET_DIR"
@@ -168,14 +178,15 @@ for BASE_TYPE in "${VARIANTS[@]}"; do
     mkdir -p "$MACOS_DIR" "$RESOURCES_DIR"
 
     # 1. Info.plist
+    cp "$INFO_PLIST_SRC" "${CONTENTS_DIR}/Info.plist"
     if [ "$BASE_TYPE" == "NotifiPersistent" ]; then
-        sed "s/com.saihgupr.NotifiPersistent.v2/com.saihgupr.NotifiPersistent.${VARIANT_NAME}/" "$INFO_PERSISTENT_PLIST_SRC" > "${CONTENTS_DIR}/Info.plist.tmp"
-        sed -i '' "s/<string>NotifiPersistent<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
+        cp "$INFO_PERSISTENT_PLIST_SRC" "${CONTENTS_DIR}/Info.plist"
+        /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.saihgupr.NotifiPersistent.${VARIANT_NAME}" "${CONTENTS_DIR}/Info.plist"
+        /usr/libexec/PlistBuddy -c "Set :CFBundleName '${DISPLAY_NAME} (Persistent)'" "${CONTENTS_DIR}/Info.plist"
     else
-        sed "s/com.saihgupr.NotifiCLI.v2/com.saihgupr.NotifiCLI.${VARIANT_NAME}/" "$INFO_PLIST_SRC" > "${CONTENTS_DIR}/Info.plist.tmp"
-        sed -i '' "s/<string>NotifiCLI<\/string>/<string>${VARIANT_NAME}<\/string>/" "${CONTENTS_DIR}/Info.plist.tmp"
+        /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.saihgupr.NotifiCLI.${VARIANT_NAME}" "${CONTENTS_DIR}/Info.plist"
+        /usr/libexec/PlistBuddy -c "Set :CFBundleName '${DISPLAY_NAME}'" "${CONTENTS_DIR}/Info.plist"
     fi
-    mv "${CONTENTS_DIR}/Info.plist.tmp" "${CONTENTS_DIR}/Info.plist"
 
     # 2. Icon
     cp "$ICON_PATH" "${RESOURCES_DIR}/AppIcon.icns"
@@ -192,6 +203,7 @@ for BASE_TYPE in "${VARIANTS[@]}"; do
     fi
 
     # 4. Sign (Removed entitlements for Tahoe compatibility)
+    xattr -cr "$TARGET_APP" 2>/dev/null
     codesign --force --deep -s - "$TARGET_APP" 2>/dev/null
     
     # 5. Remove quarantine (helps with Sequoia/Tahoe notification permissions)

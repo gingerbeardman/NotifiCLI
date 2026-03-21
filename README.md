@@ -39,18 +39,18 @@ Unlike `terminal-notifier`, NotifiCLI offers:
 
 
 ### Arguments
-| Flag | Description |
-| :--- | :--- |
-| `-title` | The bold title of the notification. |
-| `-subtitle` | (Optional) Secondary text line below the title. |
-| `-message` | The body text/subtitle. |
-| `-actions` | (Optional) Comma-separated list of button labels (e.g., "Yes,No"). |
-| `-image` | (Optional) Path to an image file to show as thumbnail on the right. |
-| `-icon` | (Optional) Path to an `.app` to use its icon for the notification. |
-| `-reply` | (Optional) Adds a "Reply" button with a placeholder text input. |
-| `-url` | (Optional) Opens the specified URL when notification is clicked. |
-| `-sound` | (Optional) System sound or file path. Sounds: Basso, Blow, Bottle, Frog, Funk, Glass, Hero, Morse, Ping, Pop, Purr, Sosumi, Submarine, Tink |
-| `-persistent` | Notification stays on screen until dismissed. |
+| Flag | Shorthand | Description |
+| :--- | :--- | :--- |
+| `-title` | `-t` | The bold title of the notification. |
+| `-message` | `-m` | The body text/subtitle. |
+| `-persistent` | `-p` | Notification stays on screen until dismissed. |
+| `-icon` \| `-app` | `-i` \| `-a` | Path to an `.app` (or just its name) to use its icon. |
+| `-subtitle` | | (Optional) Secondary text line below the title. |
+| `-actions` | | (Optional) Comma-separated list of button labels. |
+| `-image` | | (Optional) Path to an image file (right thumbnail). |
+| `-reply` | | (Optional) Adds a "Reply" button with text input. |
+| `-url` | | (Optional) Opens the specified URL when clicked. |
+| `-sound` | | (Optional) System sound or file path. |
 
 ### Output Behavior
 When using `-actions`, `-reply`, or `-url`, the command waits for user interaction and prints the result:
@@ -61,15 +61,19 @@ When using `-actions`, `-reply`, or `-url`, the command waits for user interacti
 
 
 ## Persistent Mode
-To use persistent alerts (notifications that don't disappear), use the `-persistent` flag.
 
-**One-Time Setup Required:**
-1. Run a persistent test once: `notificli -message 'Setup' -persistent`
+To use persistent alerts (notifications that don't disappear), use the `-p` or `-persistent` flag.
+
+**Naming Convention:**
+Standard variants and Persistent variants are separated in macOS settings so you can have different rules for each:
+- **Standard**: `Safari`
+- **Persistent**: `Safari (Persistent)`
+
+**Setup:**
+1. Run a persistent test: `notificli -m 'Setup' -p`
 2. Open **System Settings > Notifications**.
-3. Find **NotifiPersistent** in the list.
-4. Change the **Alert Style** to **Persistent**.
-
-Now, valid commands with `-persistent` will stay on screen until clicked.
+3. Find the entry ending in **(Persistent)**.
+4. Change the **Alert Style** from *Banners* to **Alerts** (Persistent).
 
 ## Scripting Example
 
@@ -151,14 +155,14 @@ brew install --cask notificli
 
 ### Manual Installation
 
-1. **Download** the latest release from [Releases](https://github.com/saihgupr/NotifiCLI/releases)
-2. **Unzip** and move `NotifiCLI.app` to `~/Applications/` (NotifiPersistent is embedded inside)
+1. **Download NotifiCLI.dmg** from [Releases](https://github.com/saihgupr/NotifiCLI/releases) (v1.3.4+)
+2. **Open the DMG** and drag `NotifiCLI.app` to your `Applications` folder.
 3. **Grant permissions**:
-   - Double-click `NotifiCLI.app` to allow notifications
-   - For persistent alerts, also open `NotifiCLI.app/Contents/Apps/NotifiPersistent.app`
+   - Double-click `NotifiCLI.app` to allow notifications.
+   - For persistent alerts, also run a test command: `notificli -m "Setup" -p` and follow the prompt.
 4. **Add to PATH** (optional):
    ```bash
-   ln -s /path/to/NotifiCLI/notificli /usr/local/bin/notificli
+   ln -s /Applications/NotifiCLI.app/Contents/MacOS/notificli /usr/local/bin/notificli
    ```
 
 ### Build from Source
@@ -223,19 +227,16 @@ notificli -icon 'KeyboardMaestro' -title 'Macro' -message 'Finished'  # shorthan
 
 > **Note**: macOS caches app icons. If a new icon doesn't appear immediately, restart Notification Center: `killall NotificationCenter`.
 >
-> **Important (macOS Sequoia/Tahoe)**: On newer macOS versions, each custom icon variant acts as a unique app with its own security profile. The first time you use a new icon, it may be blocked from sending notifications.
+> **Important (macOS Sequoia/Tahoe)**: On newer macOS versions, each custom icon variant acts as a unique app. The first time you use a new icon, it may be blocked from sending notifications.
 >
-> **The Fix**: To grant permission, you must perform a one-time "blessing":
-> 1. Open Finder to `/Applications/NotifiCLI.app/Contents/Apps`
-> 2. Right-click the new variant (e.g., `NotifiCLI-Calculator.app`) and choose **Open**.
-> 3. If blocked, go to **System Settings > Privacy & Security** and click **Open Anyway**.
->
-> Once trusted once, that icon will work forever.
->
+> **The Fix**: The latest version automatically attempts to "bless" new variants by registering them with Launch Services. If you still see permissions errors, run this command to prompt for access for all variants:
+> ```bash
+> find /Applications/NotifiCLI.app/Contents/Apps -name '*.app' -maxdepth 1 -exec open {} \;
+> ```
 >
 > [!WARNING]
 > **Notification Preferences Bloat**
-> Each custom icon variant you create acts as a unique app bundle with its own settings. This means your **System Settings > Notifications** list will grow with an entry for every app icon you add (e.g., `NotifiCLI-Slack`, `NotifiCLI-Terminal`). Be selective with which icons you generate if you want to keep that list tidy!
+> Each custom icon variant you create acts as a unique app bundle with its own settings. This means your **System Settings > Notifications** list will grow with an entry for every app icon you add (e.g., `Safari` and `Safari (Persistent)`). Be selective with which icons you generate if you want to keep that list tidy!
 
 ## Troubleshooting
 
